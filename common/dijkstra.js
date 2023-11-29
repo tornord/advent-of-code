@@ -8,7 +8,8 @@ import { sortedInsert } from ".";
  * @param {(n: Node) => string} toHash hash function
  * @returns {{[hash: string]: number}} costs dictionary
  */
-export function dijkstra(target, backwardNeighbors, cost, toHash = null) {
+export function dijkstra(target, backwardNeighbors, cost = null, toHash = null) {
+  cost ??= () => 1;
   toHash ??= (n) => n;
   const visiteds = new Set();
   const costs = {};

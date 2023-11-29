@@ -54,4 +54,25 @@ describe("dijkstra", () => {
     const costs = dijkstra("A", neighbors, cost);
     expect(costs).toEqual({ A: 0, B: 4, C: 5, D: 13, E: 8, F: 14 });
   });
+
+  test("floodfill", () => {
+    const trim = (s) => s[0].trim().split("\n").map((d) => d.trim()).filter((d) => d !== ""); // prettier-ignore
+    const m = trim`
+      ......
+      .###..
+      .##...
+      .#..#.
+      ...##.
+      ......
+      `;
+    const DIRS = "RDLU".split("").map((d, i) => ({ id: d, x: i % 2 === 0 ? 1 - i : 0, y: i % 2 === 1 ? 2 - i : 0 }));
+    const insideMatrix = (p, mat) => p.x >= 0 && p.y >= 0 && p.x < mat[0].length && p.y < mat.length;
+    const neighbors = (n) =>
+      DIRS.map((d) => ({ x: n.x + d.x, y: n.y + d.y })).filter((p) =>
+        insideMatrix(p, m) ? m[p.y][p.x] === "#" : false
+      );
+    const toHash = (n) => `${n.x},${n.y}`;
+    const cs = dijkstra({ x: 1, y: 1 }, neighbors, () => 1, toHash);
+    expect(Object.keys(cs).length).toEqual(6);
+  });
 });
