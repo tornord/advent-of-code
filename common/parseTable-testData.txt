@@ -1,0 +1,85 @@
+London to Dublin = 464
+London to Belfast = 518
+Dublin to Belfast = 141
+
+start-A
+A-c
+A-b
+b-d
+b-end
+
+Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
+Valve BB has flow rate=13; tunnels lead to valves CC, AA
+Valve DD has flow rate=20; tunnels lead to valves CC, AA, EE
+Valve EE has flow rate=3; tunnels lead to valves FF, DD
+Valve HH has flow rate=22; tunnel leads to valve GG
+
+COM)B
+B)C
+C)D
+D)E
+E)F
+
+Step C must be finished before step A can begin.
+Step C must be finished before step F can begin.
+Step A must be finished before step B can begin.
+Step A must be finished before step D can begin.
+Step B must be finished before step E can begin.
+
+ktlj (57)
+fwft (72) -> ktlj, cntj, xhth
+qoyq (66)
+padx (45) -> pbga, havc, qoyq
+jptl (61)
+ugml (68) -> gyxo, ebii, jptl
+gyxo (61)
+
+0 <-> 2
+2 <-> 0, 3, 4
+3 <-> 2, 4
+4 <-> 2, 3, 6
+5 <-> 6
+6 <-> 4, 5
+
+Sensor at x=2, y=18: closest beacon is at x=-2, y=15
+Sensor at x=9, y=16: closest beacon is at x=10, y=16
+Sensor at x=13, y=2: closest beacon is at x=15, y=3
+Sensor at x=12, y=14: closest beacon is at x=10, y=16
+Sensor at x=10, y=20: closest beacon is at x=10, y=16
+Sensor at x=14, y=17: closest beacon is at x=10, y=16
+
+root: pppw + sjmn
+dbpl: 5
+cczh: sllz + lgvd
+zczc: 2
+ptdq: humn - dvpt
+sjmn: drzm * dbpl
+pppw: cczh / lfqf
+
+Alice would gain 54 happiness units by sitting next to Bob.
+Alice would lose 79 happiness units by sitting next to Carol.
+Bob would lose 7 happiness units by sitting next to Carol.
+Bob would lose 63 happiness units by sitting next to David.
+Carol would lose 62 happiness units by sitting next to Alice.
+Carol would gain 60 happiness units by sitting next to Bob.
+David would lose 7 happiness units by sitting next to Bob.
+
+Rudolph can fly 22 km/s for 8 seconds, but then must rest for 165 seconds.
+Cupid can fly 8 km/s for 17 seconds, but then must rest for 114 seconds.
+Prancer can fly 18 km/s for 6 seconds, but then must rest for 103 seconds.
+
+b inc 5 if a > 1
+a inc 1 if b < 5
+c dec -10 if a >= 1
+c inc -20 if c == 10
+
+p=< 3,0,0>, v=< 2,0,0>, a=<-1,0,0>
+p=< 4,0,0>, v=< 0,0,0>, a=<-2,0,0>
+
+position=< 7,  0> velocity=<-1,  0>
+position=< 3, -2> velocity=<-1,  1>
+position=< 6, 10> velocity=<-2, -1>
+position=< 2, -4> velocity=< 2,  2>
+position=<-6, 10> velocity=< 2, -2>
+position=< 1,  8> velocity=< 1, -1>
+position=< 1,  7> velocity=< 1,  0>

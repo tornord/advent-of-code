@@ -1,0 +1,103 @@
+{
+  // Place your test221201 workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  "Print to console": {
+    "scope": "javascript,typescript",
+    "prefix": ["con", "console.log"],
+    "body": ["console.log(${1:$CLIPBOARD}); // eslint-disable-line"],
+    "description": "Log output to console"
+  },
+  "Assert deepEqual": {
+    "scope": "javascript,typescript",
+    "prefix": "assert",
+    "body": ["assert.deepEqual(${1:$CLIPBOARD}, expected); // prettier-ignore"],
+    "description": "Assert deepEqual"
+  },
+  "For matrix": {
+    "scope": "javascript,typescript",
+    "prefix": "formatrix",
+    "body": [
+      "for (let y = 0; y < ${1:array}.length; y++) {",
+      "  for (let x = 0; x < ${1}[0].length; x++) {",
+      "    let v = ${1}[y][x];",
+      "    ${1}[y][x] = v;",
+      "  }",
+      "}"
+    ],
+    "description": "For-loop matrix"
+  },
+  "Matrix directions": {
+    "scope": "javascript,typescript",
+    "prefix": ["directions", "dirs"],
+    "body": [
+      "const DIRS = \"${1:RDLU}\".split(\"\").map((d, i) => ({ id: d, x: i % 2 === 0 ? 1 - i : 0, y: i % 2 === 1 ? 2 - i : 0 }));"
+    ],
+    "description": "Matrix directions, right, down, left, up"
+  },
+  "depth first search": {
+    "scope": "javascript,typescript",
+    "prefix": ["dfs", "depth"],
+    "body": [
+      "const queue = [startState];",
+      "while (queue.length > 0) {",
+      "  const q = queue.pop();",
+      "  const ns = nextStates(q);",
+      "  for (const n of ns) {",
+      "    if (isEndState(n)) continue;",
+      "    queue.push(n);",
+      "  }",
+      "}"
+    ],
+    "description": "Depth-first search"
+  },
+  "sum function": {
+    "scope": "javascript,typescript",
+    "prefix": "sum",
+    "body": ["const sum = (xs) => xs.reduce((p, c) => p + c, 0);"],
+    "description": "sum function one liner"
+  },
+  "prod function": {
+    "scope": "javascript,typescript",
+    "prefix": "prod",
+    "body": ["const prod = (xs) => xs.reduce((p, c) => p * c, 1);"],
+    "description": "sum function one liner"
+  },
+  "groupBy function": {
+    "scope": "javascript,typescript",
+    "prefix": "groupBy",
+    "body": [
+      "function groupBy(xs, keyFun = (d) => d, valueFun = (d) => d) {",
+      "  const dict = Object.assign({}, ...xs.map((d, i) => ({ [keyFun(d, i)]: [] })));",
+      "  xs.forEach((d, i) => dict[keyFun(d, i)].push(valueFun(d, i)));",
+      "  return dict;",
+      "}"
+    ],
+    "description": "groupBy function one liner"
+  },
+  "aStar algorithm": {
+    "scope": "javascript,typescript",
+    "prefix": "astar",
+    "body": [
+      "const STEPS = [[0, -1], [0, 1], [-1, 0], [1, 0]].map((d) => ({ x: d[0], y: d[1] })); // prettier-ignore",
+      "const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });",
+      "const dist = (n0, n1) => abs(n1.x - n0.x) + abs(n1.y - n0.y);",
+      "const mat = newMatrix(8, 8, () => \".\");",
+      "const start = { x: 0, y: 0 };",
+      "const target = { x: mat[0].length - 1, y: mat.length - 1 };",
+      "const hCost = (n) => dist(n, target);",
+      "const insideMatrix = (mat, n) => n.x >= 0 && n.y >= 0 && n.x < mat[0].length && n.y < mat.length;",
+      "const neighbors = (n) => {",
+      "  let ns = STEPS.map((d) => add(n, d)).filter((d) => insideMatrix(mat, d));",
+      "  return ns.filter((d) => mat[d.y][d.x] !== \"#\");",
+      "};",
+      "const toHash = (n) => Object.values(n).join(\",\");",
+      "const costs = aStar(start, neighbors, dist, hCost, toHash);"
+    ],
+    "description": "astar boiler plate"
+  }
+}

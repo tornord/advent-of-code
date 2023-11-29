@@ -1,0 +1,4 @@
+// [ 111, 188 ]
+Hit Points: 109
+Damage: 8
+Armor: 2

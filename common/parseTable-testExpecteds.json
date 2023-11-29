@@ -1,0 +1,102 @@
+[
+  [
+    ["London", "Dublin", 464],
+    ["London", "Belfast", 518],
+    ["Dublin", "Belfast", 141]
+  ],
+  [
+    ["start", "A"],
+    ["A", "c"],
+    ["A", "b"],
+    ["b", "d"],
+    ["b", "end"]
+  ],
+  [
+    ["AA", 0, "DD", "II", "BB"],
+    ["BB", 13, "CC", "AA", null],
+    ["DD", 20, "CC", "AA", "EE"],
+    ["EE", 3, "FF", "DD", null],
+    ["HH", 22, "GG", null, null]
+  ],
+  [
+    ["COM", "B"],
+    ["B", "C"],
+    ["C", "D"],
+    ["D", "E"],
+    ["E", "F"]
+  ],
+  [
+    ["C", "A"],
+    ["C", "F"],
+    ["A", "B"],
+    ["A", "D"],
+    ["B", "E"]
+  ],
+  [
+    ["ktlj", 57, null, null, null],
+    ["fwft", 72, "ktlj", "cntj", "xhth"],
+    ["qoyq", 66, null, null, null],
+    ["padx", 45, "pbga", "havc", "qoyq"],
+    ["jptl", 61, null, null, null],
+    ["ugml", 68, "gyxo", "ebii", "jptl"],
+    ["gyxo", 61, null, null, null]
+  ],
+  [
+    [0, 2, null, null],
+    [2, 0, 3, 4],
+    [3, 2, 4, null],
+    [4, 2, 3, 6],
+    [5, 6, null, null],
+    [6, 4, 5, null]
+  ],
+  [
+    [2, 18, -2, 15],
+    [9, 16, 10, 16],
+    [13, 2, 15, 3],
+    [12, 14, 10, 16],
+    [10, 20, 10, 16],
+    [14, 17, 10, 16]
+  ],
+  [
+    ["root", "pppw", "+", "sjmn"],
+    ["dbpl", "5", null, null],
+    ["cczh", "sllz", "+", "lgvd"],
+    ["zczc", "2", null, null],
+    ["ptdq", "humn", "-", "dvpt"],
+    ["sjmn", "drzm", "*", "dbpl"],
+    ["pppw", "cczh", "/", "lfqf"]
+  ],
+  [
+    ["Alice", "gain", 54, "Bob"],
+    ["Alice", "lose", 79, "Carol"],
+    ["Bob", "lose", 7, "Carol"],
+    ["Bob", "lose", 63, "David"],
+    ["Carol", "lose", 62, "Alice"],
+    ["Carol", "gain", 60, "Bob"],
+    ["David", "lose", 7, "Bob"]
+  ],
+  [
+    ["Rudolph", 22, 8, 165],
+    ["Cupid", 8, 17, 114],
+    ["Prancer", 18, 6, 103]
+  ],
+  [
+    ["b", "inc", 5, "a", ">", 1],
+    ["a", "inc", 1, "b", "<", 5],
+    ["c", "dec", -10, "a", ">=", 1],
+    ["c", "inc", -20, "c", "==", 10]
+  ],
+  [
+    [3, 0, 0, 2, 0, 0, -1, 0, 0],
+    [4, 0, 0, 0, 0, 0, -2, 0, 0]
+  ],
+  [
+    [7, 0, -1, 0],
+    [3, -2, -1, 1],
+    [6, 10, -2, -1],
+    [2, -4, 2, 2],
+    [-6, 10, 2, -2],
+    [1, 8, 1, -1],
+    [1, 7, 1, 0]
+  ]
+]

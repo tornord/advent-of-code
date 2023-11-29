@@ -1,0 +1,90 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "run current file",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["--loader=./scripts/loader.js", "${file}"],
+      "env": { "TEST_DIR": "${fileDirname}" },
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "fetch input",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["scripts/fetch-input.js"],
+      "env": { "TEST_DIR": "${fileDirname}" },
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "create day",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["scripts/create-day.js"],
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "aoc run current folder",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["--loader=./scripts/loader.js", "--no-warnings=ExperimentalWarning", "${fileDirname}/loader.js"],
+      "env": { "TEST_DIR": "${fileDirname}" },
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "aoc test current folder",
+      "skipFiles": ["<node_internals>/**"],
+      "args": [
+        "--experimental-vm-modules",
+        "--no-warnings=ExperimentalWarning",
+        "./node_modules/.bin/jest",
+        "${workspaceFolder}/advent-of-code.test.js"
+      ],
+      "env": { "TEST_DIR": "${fileDirname}" },
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "kattis test current folder",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "${workspaceFolder}/kattis.test.js"],
+      "env": { "TEST_DIR": "${fileDirname}" },
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test current file",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "${file}"],
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test all",
+      "skipFiles": ["<node_internals>/**"],
+      "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "--silent"],
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.9.0/bin/node",
+      "console": "integratedTerminal"
+    }
+  ]
+}

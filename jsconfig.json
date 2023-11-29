@@ -1,0 +1,12 @@
+{
+  // This file is required for VSCode to understand Vite aliases
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es6",
+    "paths": {
+      "@common": ["./common"]
+    },
+    "moduleResolution": "node"
+  },
+  "include": ["days/**/*", "common/**/*"]
+}
