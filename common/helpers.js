@@ -92,8 +92,8 @@ export const reduceSet = (startSet, ...subtractorSets) => {
  */
 export const transpose = (mat) => {
   const res = [];
-  const ids = newArray(mat[0].length, (i) => i);
-  for (let j = 0; j < ids.length; j++) {
+  const ids = newArray(mat.length, (i) => i);
+  for (let j = 0; j < mat[0].length; j++) {
     res.push(ids.map((d) => mat[d][j]));
   }
   return res;

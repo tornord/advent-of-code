@@ -1,3 +1,5 @@
+import { parseTable } from "../../../common";
+
 const { abs } = Math;
 
 const DIRS = "ESWN".split("").map((d, i) => ({ id: d, x: i % 2 === 0 ? 1 - i : 0, y: i % 2 === 1 ? i - 2 : 0 }));
@@ -49,6 +51,6 @@ function calc2(input) {
 }
 
 export default function (inputRows) {
-  const input = inputRows.map((r) => [r.slice(0, 1), Number(r.slice(1))]);
+  const input = parseTable(inputRows);
   return [calc1(input), calc2(input)];
 }

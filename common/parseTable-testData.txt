@@ -83,3 +83,29 @@ position=< 2, -4> velocity=< 2,  2>
 position=<-6, 10> velocity=< 2, -2>
 position=< 1,  8> velocity=< 1, -1>
 position=< 1,  7> velocity=< 1,  0>
+
+57-93,9-57
+55-55,55-83
+55-88,78-88
+24-24,24-95
+7-92,8-93
+25-84,84-85
+62-85,62-85
+
+Faerun to Arbre = 149
+Tristram to Tambi = 63
+Tambi to AlphaCentauri = 22
+Tambi to Arbre = 143
+Norrath to Snowdin = 8
+
+F10
+N3
+F7
+R90
+F11
+
+  810  679   10
+  783  255  616
+  545  626  626
+   84  910  149
+  607  425  901

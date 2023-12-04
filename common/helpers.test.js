@@ -107,15 +107,25 @@ describe("helpers", () => {
   });
 
   test("transpose", () => {
-    const t = transpose([
+    const t1 = [
       [1, 2, 3],
       [4, 5, 6],
       [7, 8, 9],
-    ]);
-    expect(t).toEqual([
+    ];
+    const t2 = transpose(t1);
+    expect(t2).toEqual([
       [1, 4, 7],
       [2, 5, 8],
       [3, 6, 9],
+    ]);
+    expect(transpose(t1.map((r) => r.slice(0, 2)))).toEqual([
+      [1, 4, 7],
+      [2, 5, 8],
+    ]);
+    expect(transpose(t1.slice(0, 2))).toEqual([
+      [1, 4],
+      [2, 5],
+      [3, 6],
     ]);
   });
 

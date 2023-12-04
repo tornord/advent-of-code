@@ -1,12 +1,12 @@
+import { parseTable } from "../../../common";
+
 export default function (inputRows) {
+  const input = parseTable(inputRows);
   let x = 0;
   let y1 = 0;
   let y2 = 0;
   let z = 0;
-  for (const r of inputRows) {
-    const m = r.match(/(forward|down|up) (\d+)/);
-    const [c, n] = m.slice(1);
-    const nn = Number(n);
+  for (const [c, nn] of input) {
     if (c[0] === "f") {
       x += nn;
       y2 += z * nn;

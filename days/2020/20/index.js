@@ -1,6 +1,6 @@
 // import { strict as assert } from "node:assert";
 
-import { groupBy, newMatrix, prod } from "../../../common";
+import { groupBy, matchNumbers, newMatrix, parseTable, prod, splitArray } from "../../../common";
 
 const { max, min, sqrt } = Math;
 
@@ -214,11 +214,8 @@ function calc2(tiles) {
 }
 
 export default function (inputRows) {
-  const tiles = [];
-  for (let i = 0; i < inputRows.length; i += 12) {
-    const [, id] = inputRows[i].match("Tile ([0-9]+):");
-    const data = inputRows.slice(i + 1, i + 11);
-    tiles.push({ id, data });
-  }
+  const arr = splitArray(inputRows);
+  const ids = parseTable(arr.map((d) => d[0]));
+  const tiles = arr.map((d, i) => ({ id: ids[i][0], data: d.slice(1) }));
   return [calc1(tiles), calc2(tiles)];
 }

@@ -1,3 +1,5 @@
+import { newArray, transpose } from "./helpers";
+
 const { max } = Math;
 
 function groupBy(xs, keyFun = (d) => d) {
@@ -19,7 +21,7 @@ export function parseTable(rows, charactersToNotSplitOn = "") {
       .filter((char) => charactersToNotSplitOn.indexOf(char) === -1)
       .join("")
   );
-  const regex = new RegExp(`[${regexCharacters}][ \\t]*|[.-](?![ 0-9])|[ \\t]+`);
+  const regex = new RegExp(`[${regexCharacters}][ \\t]*|(?<=\\d)-|[.-](?![ \\d])|[ \\t]+|(?<=[a-zA-Z])(?=\\d)`);
   const res = rows.map((r) => r.split(regex));
   const nr = max(...res.map((r) => r.length));
   let vals = [...Array(nr)].map((d, i) => res.map((r) => r?.[i] ?? null));
@@ -45,4 +47,10 @@ export function parseTable(rows, charactersToNotSplitOn = "") {
   });
   if (vals.length === 0) return [];
   return [...Array(vals[0].length)].map((d, i) => vals.map((e) => e[i] ?? null));
+}
+
+export function preSplitAndParseTables(rows, colSplitter = /[:]/) {
+  const ts = rows.map((r) => r.split(colSplitter));
+  const n = Math.max(...ts.map((r) => r.length));
+  return transpose(newArray(n, (d) => d).map((i) => parseTable(ts.map((r) => r?.[i] ?? ""))));
 }
