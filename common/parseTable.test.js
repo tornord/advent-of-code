@@ -2,20 +2,12 @@ import fs from "fs";
 
 import expecteds from "./parseTable-testExpecteds.json";
 import { parseTable } from "./parseTable";
+import { splitArray } from "./helpers";
 
 describe("parseTable", () => {
   const rows = fs.readFileSync("./common/parseTable-testData.txt", "utf-8").split("\n");
   while (rows[rows.length - 1] === "") rows.pop();
-  const breaks = rows
-    .map((d, i) => [i, d])
-    .filter(([, d]) => d === "")
-    .map(([i]) => i);
-  breaks.unshift(-1);
-  breaks.push(rows.length);
-  const cases = [];
-  for (let i = 0; i < breaks.length - 1; i++) {
-    cases.push(rows.slice(breaks[i] + 1, breaks[i + 1]));
-  }
+  const cases = splitArray(rows, (d) => d === "");
   const res = [];
   for (let i = 0; i < cases.length; i++) {
     const c = cases[i];

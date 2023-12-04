@@ -291,5 +291,29 @@ export function minSearch(a, b, valueFun) {
 }
 
 export function matchNumbers(r) {
-  return r.match(/-?\d*\.?\d+/g).map(Number);
+  const m = r.match(/-?\d*\.?\d+/g);
+  if (!m) return [];
+  return m.map(Number);
 }
+
+export function splitArray(a, critFun = (d) => !d) {
+  const breaks = a
+    .map((d, i) => [d, i])
+    .filter(([d, i]) => critFun(d, i, a))
+    .map(([, i]) => i);
+  breaks.unshift(-1);
+  breaks.push(a.length);
+  const res = [];
+  for (let i = 0; i < breaks.length - 1; i++) {
+    res.push(a.slice(breaks[i] + 1, breaks[i + 1]));
+  }
+  return res;
+}
+
+/** comma separated hash to 2 or 3 dimensions node object {x, y, z} */
+export const nodeFromHash = (h) =>
+  toDict(
+    h.split(",").map(Number),
+    (_, i) => String.fromCharCode(120 + i), // x, y, z
+    (d) => d
+  );

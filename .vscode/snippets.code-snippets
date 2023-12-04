@@ -39,6 +39,14 @@
     ],
     "description": "Matrix directions, right, down, left, up"
   },
+  "Matrix directions inclusive diagonals": {
+    "scope": "javascript,typescript",
+    "prefix": ["directions", "dirs8", "diagonals"],
+    "body": [
+      "const DIRS8 = newArray(9, (i) => ({ id: i, x: (i % 3) - 1, y: i < 3 ? -1 : i > 5 ? 1 : 0})).filter((d) => d.id !== 4); // prettier-ignore"
+    ],
+    "description": "Matrix directions, right, down, left, up"
+  },
   "depth first search": {
     "scope": "javascript,typescript",
     "prefix": ["dfs", "depth"],

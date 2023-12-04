@@ -43,6 +43,6 @@ export function parseTable(rows, charactersToNotSplitOn = "") {
     }
     return vs;
   });
-
-  return [...Array(vals[0].length)].map((d, i) => vals.map((e) => e[i]));
+  if (vals.length === 0) return [];
+  return [...Array(vals[0].length)].map((d, i) => vals.map((e) => e[i] ?? null));
 }

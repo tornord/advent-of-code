@@ -119,12 +119,12 @@ function calc2(input) {
   return c1.nbr * c2.nbr;
 }
 
-function resultString(circle, task1 = true) {
+function resultString(circle, part = 1) {
   let n1 = circle.find(1);
   n1 = n1.next;
   const nbr1 = n1.item;
   const nbr2 = n1.next.item;
-  if (!task1) {
+  if (part === 2) {
     return String(nbr1 * nbr2);
   }
   const res = [];
@@ -163,9 +163,8 @@ function calc22(input) {
       dest = circle.insert(d, dest);
     }
     curr = curr.next;
-    // console.log(resultString(circle, true));
   }
-  return resultString(circle, false);
+  return resultString(circle, 2);
 }
 
 export default function (inputRows) {
@@ -173,4 +172,3 @@ export default function (inputRows) {
   const [input] = inputRows.map((r) => r.split("").map(Number));
   return [calc1(input), calc22(input)];
 }
-

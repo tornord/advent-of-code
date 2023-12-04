@@ -3,7 +3,7 @@ import { strict as assert } from "node:assert"; // eslint-disable-line
 import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common"; // eslint-disable-line
 import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
 import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { parseTable } from "../../../common" // eslint-disable-line
+import { matchNumbers, parseTable, splitArray } from "../../../common" // eslint-disable-line
 
 const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
 const { isArray } = Array; // eslint-disable-line
@@ -33,8 +33,12 @@ function calc2(input) {
 }
 
 export default function (inputRows) {
-  // let input = parseTable(inputRows);
-  let input = inputRows.map((r) => r);
+  let input1 = parseTable(inputRows);
+  let input2 = splitArray(inputRows, (r) => r === "");
+  let input3 = inputRows.map(matchNumbers);
+  let input4 = inputRows.map((r) => r.split(/, ?/g));
+  let input5 = inputRows.map((r) => r.split(""));
+  let input = input1;
   return [calc1(input), calc2(input)];
 }
 

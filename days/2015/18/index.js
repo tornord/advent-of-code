@@ -20,7 +20,7 @@ const lightCorners = (m) => {
   m[m.length - 1][m[0].length - 1] = "#";
 };
 
-function calc2(input, part = 2) {
+function calc(input, part = 2) {
   let m = input.map((r) => r.split(""));
   const nsim = input.length === 6 ? (part === 2 ? 5 : 4) : 100;
   if (part === 2) {
@@ -48,5 +48,5 @@ function calc2(input, part = 2) {
 
 export default function (inputRows) {
   const input = inputRows.map((r) => r);
-  return [calc2(input, 1), calc2(input, 2)];
+  return [calc(input, 1), calc(input, 2)];
 }

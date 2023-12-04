@@ -8,13 +8,13 @@ function addHouse(hs, pos) {
   hs[k]++;
 }
 
-function calc(rows, n) {
+function calc(rows, part) {
   const hs = {};
-  const pos = newArray(n, () => [0, 0]);
+  const pos = newArray(part, () => [0, 0]);
   addHouse(hs, pos[0]);
   for (const r of rows) {
-    for (let i = 0; i < r.length; i += n) {
-      for (let j = 0; j < n; j++) {
+    for (let i = 0; i < r.length; i += part) {
+      for (let j = 0; j < part; j++) {
         const c = r[i + j];
         const p = pos[j];
         if (c === ">") p[0]++;

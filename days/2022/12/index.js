@@ -25,9 +25,9 @@ function readInput(rows) {
   return { mat, start1, end };
 }
 
-function calc2(mat, start1, end, task) {
+function calc(mat, start1, end, part) {
   const starts = [];
-  if (task === 1) {
+  if (part === 1) {
     starts.push(start1);
   } else {
     for (let y = 0; y < mat.length; y++) {
@@ -70,5 +70,5 @@ function calc2(mat, start1, end, task) {
 
 export default function (inputRows) {
   const { mat, start1, end } = readInput(inputRows);
-  return [calc2(mat, start1, end, 1), calc2(mat, start1, end, 2)];
+  return [calc(mat, start1, end, 1), calc(mat, start1, end, 2)];
 }

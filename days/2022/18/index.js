@@ -33,7 +33,7 @@ const reachesVoid = (p, cubes, insides, outsides) => {
   return false;
 };
 
-function calc(rows, task) {
+function calc(rows, part) {
   let outsides = new Set();
   let insides = new Set();
   let cubes = new Set(rows.map((d) => toKey(...d)));
@@ -42,7 +42,7 @@ function calc(rows, task) {
     let [x, y, z] = r;
     for (const [dx, dy, dz] of DELTAS) {
       let p = [x + dx, y + dy, z + dz];
-      if ((task === 1 && !cubes.has(toKey(...p))) || reachesVoid(p, cubes, insides, outsides)) {
+      if ((part === 1 && !cubes.has(toKey(...p))) || reachesVoid(p, cubes, insides, outsides)) {
         n++;
       }
     }

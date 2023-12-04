@@ -1,11 +1,11 @@
-function moveCratesTask1(crates, count, from, to) {
+function moveCratesPart1(crates, count, from, to) {
   for (let i = 0; i < count; i++) {
     const d = crates[from - 1].pop();
     crates[to - 1].push(d);
   }
 }
 
-function moveCratesTask2(crates, count, from, to) {
+function moveCratesPart2(crates, count, from, to) {
   const c = crates[from - 1];
   const d = c.slice(c.length - count, c.length);
   for (let j = 0; j < count; j++) {
@@ -43,5 +43,5 @@ function calc(rows, moveCrates) {
 }
 
 export default function (inputRows) {
-  return [calc(inputRows, moveCratesTask1), calc(inputRows, moveCratesTask2)];
+  return [calc(inputRows, moveCratesPart1), calc(inputRows, moveCratesPart2)];
 }

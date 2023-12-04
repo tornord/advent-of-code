@@ -2,11 +2,6 @@ import { sum } from "../../../common";
 
 const { isArray } = Array;
 
-function calc(json, skipRed) {
-  const obj = JSON.parse(json);
-  return evalObj(obj, skipRed);
-}
-
 function evalObj(x, skipRed = false) {
   if (typeof x === "object" && !isArray(x)) {
     x = Object.values(x);
@@ -19,6 +14,11 @@ function evalObj(x, skipRed = false) {
     return sum(vs);
   }
   return 0;
+}
+
+function calc(json, skipRed) {
+  const obj = JSON.parse(json);
+  return evalObj(obj, skipRed);
 }
 
 export default function (inputRows) {

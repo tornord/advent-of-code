@@ -8,16 +8,19 @@ import {
   indexOf,
   intersectionSet,
   isNumeric,
+  matchNumbers,
   md5,
   minSearch,
   newArray,
   newMatrix,
+  nodeFromHash,
   prod,
   range,
   reduceSet,
   reverseString,
   rotateArray,
   sortedInsert,
+  splitArray,
   sum,
   swap,
   toDict,
@@ -385,5 +388,31 @@ describe("helpers", () => {
     }
     const ns = countBy(res);
     expect(max(...Object.keys(ns).map(Number))).toBe(37);
+  });
+
+  test("matchNumbers", () => {
+    expect(matchNumbers("a1b2c3d4e5f")).toEqual([1, 2, 3, 4, 5]);
+    expect(matchNumbers("1abc2")).toEqual([1, 2]);
+    expect(matchNumbers("abc")).toEqual([]);
+    expect(matchNumbers("")).toEqual([]);
+  });
+
+  test("splitArray", () => {
+    const a1 = [1, 2, 3, 4, 5, 6, 7, 8];
+    expect(splitArray(a1, (d) => d === 3)).toEqual([
+      [1, 2],
+      [4, 5, 6, 7, 8],
+    ]);
+
+    const a2 = "abc xyz def".split("");
+    expect(splitArray(a2, (d) => d === " ").map((d) => d.join(""))).toEqual(["abc", "xyz", "def"]);
+
+    const a3 = "abc xyz def".split("").map((d) => (d === " " ? null : d));
+    expect(splitArray(a3).map((d) => d.join(""))).toEqual(["abc", "xyz", "def"]);
+  });
+
+  test("nodeFromHash", () => {
+    expect(nodeFromHash("1,2")).toEqual({ x: 1, y: 2 });
+    expect(nodeFromHash("3,4,5")).toEqual({ x: 3, y: 4, z: 5 });
   });
 });
