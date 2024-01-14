@@ -37,9 +37,9 @@ function calc2(input, nZeros = 5) {
   return code.join("");
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let nZeros = 5;
-  if (f === "test.txt") {
+  if (filename === "test.txt") {
     nZeros = 3;
   }
   return [calc1(inputRows, nZeros), calc2(inputRows, nZeros)];

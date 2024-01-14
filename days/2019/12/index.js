@@ -63,12 +63,12 @@ function calc2(moonsInput) {
   return t1;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   const input = parseTable(inputRows);
   let nSteps = 1000;
-  if (f === "example1.txt") {
+  if (filename === "example1.txt") {
     nSteps = 10;
-  } else if (f === "example2.txt") {
+  } else if (filename === "example2.txt") {
     nSteps = 100;
   }
   return [calc1(input, nSteps), calc2(input)];

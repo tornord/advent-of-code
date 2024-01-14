@@ -7,7 +7,7 @@ function calc1(input) {
   let tbl = calc1p();
   for (let i = 2; i < tbl.length; i++) {
     let s = calc1a(i);
-    assert.deepEqual(round(s), tbl[i-1]); // prettier-ignore
+    assert.deepEqual(round(s), tbl[i - 1]);
   }
   return calc1a(input);
 }
@@ -47,7 +47,7 @@ function calc2(input) {
   let tbl = calc2p();
   for (let i = 2; i < tbl.length; i++) {
     let s = calc2a(i);
-    assert.deepEqual(round(s), tbl[i-1]); // prettier-ignore
+    assert.deepEqual(round(s), tbl[i - 1]);
   }
   return calc2a(input);
 }

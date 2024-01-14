@@ -60,8 +60,14 @@ describe("aStar", () => {
     const start = { x: 7, y: 4 };
     const target = { x: 4, y: 1 };
     const mat = newBoard(11, 6, start, target);
-    // prettier-ignore
-    [[3, 1], [3, 2], [4, 2], [5, 2], [6, 2], [7, 2],].forEach(([x, y]) => (mat[y][x] = "#"));
+    [
+      [3, 1],
+      [3, 2],
+      [4, 2],
+      [5, 2],
+      [6, 2],
+      [7, 2],
+    ].forEach(([x, y]) => (mat[y][x] = "#"));
     plotMatrix(mat);
 
     const neighbors = (n) => matrixNeighbors(mat, n);
@@ -76,8 +82,11 @@ describe("aStar", () => {
     const start = { x: 1, y: 3 };
     const target = { x: 6, y: 1 };
     const mat = newBoard(7, 4, start, target);
-    // prettier-ignore
-    [[3, 1], [4, 1], [4, 2],].forEach(([x, y]) => (mat[y][x] = "#"));
+    [
+      [3, 1],
+      [4, 1],
+      [4, 2],
+    ].forEach(([x, y]) => (mat[y][x] = "#"));
     plotMatrix(mat);
 
     const neighbors = (n) => matrixNeighbors(mat, n);
@@ -92,8 +101,16 @@ describe("aStar", () => {
     const start = { x: 1, y: 4 };
     const target = { x: 3, y: 2 };
     const mat = newBoard(6, 6, start, target);
-    // prettier-ignore
-    [[2, 1], [3, 1], [4, 1], [2, 2], [4, 2], [2, 3], [3, 3], [4, 3],].forEach(([x, y]) => (mat[y][x] = "#"));
+    [
+      [2, 1],
+      [3, 1],
+      [4, 1],
+      [2, 2],
+      [4, 2],
+      [2, 3],
+      [3, 3],
+      [4, 3],
+    ].forEach(([x, y]) => (mat[y][x] = "#"));
     plotMatrix(mat);
 
     const neighbors = (n) => matrixNeighbors(mat, n);

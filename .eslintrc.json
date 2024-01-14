@@ -2,7 +2,7 @@
   "root": true,
   "env": {
     "node": true,
-    "es6": true
+    "es2020": true
   },
   "extends": ["eslint:recommended"],
   "parserOptions": {
@@ -28,6 +28,7 @@
     "dot-notation": [2, { "allowKeywords": true }],
     "eol-last": 2,
     "eqeqeq": 2,
+    "function-call-argument-newline": ["error", "consistent"],
     "handle-callback-err": 2,
     "key-spacing": [1, { "beforeColon": false, "afterColon": true }],
     "keyword-spacing": 1,

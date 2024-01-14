@@ -1,0 +1,6 @@
+// [ 32000000, 0 ]
+broadcaster -> a, b, c
+%a -> b
+%b -> c
+%c -> inv
+&inv -> a

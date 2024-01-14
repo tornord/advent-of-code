@@ -15,9 +15,9 @@ function calc2(input) {
   return knotHash(input.join(","));
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let n = 256;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     n = 5;
   }
   const a = newArray(n, (i) => i);

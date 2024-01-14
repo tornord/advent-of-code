@@ -1,15 +1,13 @@
 import { emulate } from "../intcode";
 
 function calc1(prog) {
-  const p = prog.slice();
-  const res = emulate(p, [1]);
-  return res.output.at(-1) ?? null;
+  const res = emulate(prog, [1]);
+  return res[0];
 }
 
 function calc2(prog) {
-  const p = prog.slice();
-  const res = emulate(p, [2]);
-  return res.output.at(-1) ?? null;
+  const res = emulate(prog, [2]);
+  return res[0];
 }
 
 export default function (inputRows) {

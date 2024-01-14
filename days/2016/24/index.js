@@ -1,8 +1,8 @@
-import { aStar, newMatrix, uniquePermutations } from "../../../common";
+import { aStar, newMatrix, uniquePermutations, unitCircle } from "../../../common";
 
 const { abs } = Math;
 
-const STEPS = [[0, -1], [0, 1], [-1, 0], [1, 0]].map((d) => ({ x: d[0], y: d[1] })); // prettier-ignore
+const STEPS = unitCircle(4, 0);
 const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
 const dist = (n0, n1) => abs(n1.x - n0.x) + abs(n1.y - n0.y);
 const insideMatrix = (m, n) => n.x >= 0 && n.y >= 0 && n.x < m[0].length && n.y < m.length;

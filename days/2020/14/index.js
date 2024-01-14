@@ -6,8 +6,8 @@ const toBinary = (v) => v.toString(2).split("").map(Number).reverse();
 assert.deepEqual(toBinary(2), [0, 1]);
 assert.deepEqual(toBinary(11), [1, 1, 0, 1]);
 
-const parseMaskPart1 = (s) => s.split("").map((d, j) => [d, s.length - j-1]).filter(([e]) => e !== "X").map(([e, b]) => ({ v: Number(e), b })); // prettier-ignore
-const parseMaskPart2 = (s) => s.split("").map((d, j) => [d, s.length - j-1]).map(([v, b]) => ({ v, b })); // prettier-ignore
+const parseMaskPart1 = (s) => s.split("").map((d, j) => [d, s.length - j - 1]).filter(([e]) => e !== "X").map(([e, b]) => ({ v: Number(e), b })); // prettier-ignore
+const parseMaskPart2 = (s) => s.split("").map((d, j) => [d, s.length - j - 1]).map(([v, b]) => ({ v, b })); // prettier-ignore
 
 const toArray = (n, N = 36) => {
   const a = [];

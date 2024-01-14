@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { writeFileSync } from "fs";
 
 const { max } = Math;
@@ -8,7 +9,7 @@ function countBy(xs, keyFun = (d) => d) {
   return dict;
 }
 
-let n = Number(readline());
+const n = Number(readline());
 
 const isPossible = (sis, nk) => {
   const ns = countBy(sis);
@@ -18,11 +19,11 @@ const isPossible = (sis, nk) => {
   return sis.length <= 2 * nk;
 };
 
-let res = [];
+const res = [];
 for (let i = 0; i < n; i++) {
-  let [, nk] = readline().split(" ").map(Number);
-  let sis = readline().split(" ").map(Number);
-  let b = isPossible(sis, nk);
+  const [, nk] = readline().split(" ").map(Number);
+  const sis = readline().split(" ").map(Number);
+  const b = isPossible(sis, nk);
   res.push(b);
 }
 

@@ -259,7 +259,7 @@ function calc2(input) {
   return dist(...best.point);
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   const input = parseTable(inputRows);
-  return [calc1(input), calc2(input, f)];
+  return [calc1(input), calc2(input, filename)];
 }

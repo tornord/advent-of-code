@@ -2,7 +2,8 @@
   "root": true,
   "env": {
     "browser": true,
-    "es6": true
+    "es2020": true,
+    "node": true
   },
   "extends": ["eslint:recommended"],
   "parserOptions": {
@@ -16,7 +17,7 @@
     "arrow-spacing": 0,
     "brace-style": 0,
     "callback-return": 2,
-    "camelcase": 1,
+    "camelcase": 0,
     "comma-spacing": 0,
     "curly": 0,
     "dot-notation": 0,
@@ -67,6 +68,7 @@
     "no-spaced-func": 2,
     "no-trailing-spaces": 0,
     "no-underscore-dangle": 0,
+    "no-unreachable": 1,
     "no-unused-expressions": 2,
     "no-unused-vars": 1,
     "no-use-before-define": [2, "nofunc"],

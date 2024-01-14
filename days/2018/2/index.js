@@ -1,12 +1,8 @@
 import { countBy, groupBy } from "../../../common";
 
 function countLetters(str) {
-  const cs = countBy(str.split(""), (d) => d);
-  return groupBy(
-    Object.entries(cs),
-    (d) => d[1],
-    (d) => d[0]
-  );
+  const cs = countBy(str.split(""));
+  return groupBy(Object.entries(cs), ([, v]) => v, ([k]) => k); // prettier-ignore
 }
 
 function calc1(input) {
@@ -37,6 +33,5 @@ function calc2(input) {
 }
 
 export default function (inputRows) {
-  const input = inputRows.map((r) => r);
-  return [calc1(input), calc2(input)];
+  return [calc1(inputRows), calc2(inputRows)];
 }

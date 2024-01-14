@@ -121,9 +121,9 @@ function calc2(imsys, inf, boost) {
   }
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let boost = null;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     boost = 1570;
   }
   const n0 = 0;

@@ -14,6 +14,7 @@ function previousStates(s) {
   return res.reverse();
 }
 
+// eslint-disable-next-line no-unused-vars
 function nextStates(s) {
   let [np, ns] = fromState(s);
   let res = [];

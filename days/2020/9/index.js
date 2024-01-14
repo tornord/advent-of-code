@@ -35,10 +35,10 @@ function calc2(input, n) {
   return 0;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let input = inputRows.map(Number);
   let size = 25;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     size = 5;
   }
   let n = calc1(input, size);

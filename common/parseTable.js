@@ -14,14 +14,14 @@ function escapeRegExp(string) {
 }
 
 export function parseTable(rows, charactersToNotSplitOn = "") {
-  const charactersToSplitOn = "#,;:=()<>[]";
+  const charactersToSplitOn = "#,;:=()<>[]%~";
   const regexCharacters = escapeRegExp(
     charactersToSplitOn
       .split("")
       .filter((char) => charactersToNotSplitOn.indexOf(char) === -1)
       .join("")
   );
-  const regex = new RegExp(`[${regexCharacters}][ \\t]*|(?<=\\d)-|[.-](?![ \\d])|[ \\t]+|(?<=[a-zA-Z])(?=\\d)`);
+  const regex = new RegExp(`[${regexCharacters}][ \\t]*|(?<=\\d)-|[.-](?![ \\d])|(?<=\\d)/(?=\\d)|[ \\t]+|(?<=[a-zA-Z])(?=\\d)|(?<=\\d)(?=[a-zA-Z])`);
   const res = rows.map((r) => r.split(regex));
   const nr = max(...res.map((r) => r.length));
   let vals = [...Array(nr)].map((d, i) => res.map((r) => r?.[i] ?? null));

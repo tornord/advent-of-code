@@ -1,4 +1,4 @@
-import { dijkstra } from "../../../common";
+import { floodFill, toDict } from "../../../common";
 
 const { abs } = Math;
 
@@ -7,13 +7,14 @@ const toHash = (n) => n.join(",");
 
 function calc1(input) {
   const constellations = input.map(() => 0);
-  const backwardNeighbors = (n) => input.filter((d) => dist(d, n) <= 3);
+  const neighbors = (n) => input.filter((d) => dist(d, n) <= 3);
   let f;
   let n = 0;
   do {
     f = constellations.findIndex((d) => d === 0);
     if (f === -1) break;
-    const cs = dijkstra(input[f], backwardNeighbors, () => 1, toHash);
+    const vs = floodFill(input[f], neighbors, toHash);
+    const cs = toDict(vs, (d) => toHash(d), true);
     n++;
     for (let i = 0; i < input.length; i++) {
       const p = input[i];

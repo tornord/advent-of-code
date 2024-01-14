@@ -10,10 +10,10 @@ const toHash = (n) => `${n.x},${n.y}`;
 
 function runIntcode(prog, input = []) {
   const r = emulate(prog, input);
-  if (r.output.at(-1) > 255) {
-    return r.output.at(-1);
+  if (r.at(-1) > 255) {
+    return r.at(-1);
   }
-  return r.output
+  return r
     .map((d) => String.fromCharCode(d))
     .join("")
     .split("\n")

@@ -1,6 +1,6 @@
 // import { strict as assert } from "node:assert";
 
-import { groupBy, matchNumbers, newMatrix, parseTable, prod, splitArray } from "../../../common";
+import { groupBy, newMatrix, parseTable, prod, splitArray } from "../../../common";
 
 const { max, min, sqrt } = Math;
 

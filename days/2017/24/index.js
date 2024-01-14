@@ -1,4 +1,4 @@
-import { findMax, groupBy, sum, toDict } from "../../../common"; // eslint-disable-line
+import { findMax, groupBy, parseTable, sum, toDict } from "../../../common"; // eslint-disable-line
 
 const toState = (ids, useds, nextPin) => ({ ids, useds, nextPin });
 
@@ -61,9 +61,8 @@ function calc2(portDict) {
 }
 
 export default function (inputRows) {
-  const ports = inputRows
-    .map((r) => r.split("/"))
-    .map((r, i) => ({ id: `${r[0]}/${r[1]}`, start: r[0], end: r[1], i }));
+  const t = parseTable(inputRows);
+  const ports = t.map((r, i) => ({ id: inputRows[i], start: String(r[0]), end: String(r[1]), i }));
   const portDict = toDict(ports, (d) => d.id, (d) => d); // prettier-ignore
   return [calc1(portDict), calc2(portDict)];
 }

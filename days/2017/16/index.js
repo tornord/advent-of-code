@@ -69,10 +69,10 @@ function calc2(input, np) {
   return arr.join("");
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   const input = inputRows[0].split(",");
   let np = 16;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     np = 5;
   }
   return [calc1(input, np), calc2(input, np)];

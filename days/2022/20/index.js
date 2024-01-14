@@ -1,6 +1,6 @@
 import { sum } from "../../../common";
 
-function calc2(rows, mix, n) {
+function calc(rows, mix, n) {
   const ny = rows.length;
   let workRows = rows.slice().map((d) => d * mix);
 
@@ -33,5 +33,5 @@ function calc2(rows, mix, n) {
 }
 
 export default function (inputRows) {
-  return [calc2(inputRows, 1, 1), calc2(inputRows, 811589153, 10)];
+  return [calc(inputRows, 1, 1), calc(inputRows, 811589153, 10)];
 }

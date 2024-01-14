@@ -8,7 +8,7 @@
   // Example:
   "Print to console": {
     "scope": "javascript,typescript",
-    "prefix": ["con", "console.log"],
+    "prefix": ["console", "log"],
     "body": ["console.log(${1:$CLIPBOARD}); // eslint-disable-line"],
     "description": "Log output to console"
   },
@@ -107,5 +107,47 @@
       "const costs = aStar(start, neighbors, dist, hCost, toHash);"
     ],
     "description": "astar boiler plate"
+  },
+  "Prettier ignore": {
+    "scope": "javascript,typescript",
+    "prefix": ["//", "prettier", "ignore"],
+    "body": ["// prettier-ignore"],
+    "description": "Prettier ignore"
+  },
+  "Eslint disable line": {
+    "scope": "javascript,typescript",
+    "prefix": ["//", "eslint", "disable"],
+    "body": ["// eslint-disable-line"],
+    "description": "eslint disable line"
+  },
+  "Eslint disable next line": {
+    "scope": "javascript,typescript",
+    "prefix": ["//", "eslint", "disable", "next"],
+    "body": ["// eslint-disable-next-line"],
+    "description": "eslint disable next line"
+  },
+  "Object keys": {
+    "scope": "javascript,typescript",
+    "prefix": ["Object", "keys"],
+    "body": ["Object.keys(${1:$CLIPBOARD})"],
+    "description": "Object.keys"
+  },
+  "Object values": {
+    "scope": "javascript,typescript",
+    "prefix": ["Object", "values"],
+    "body": ["Object.values(${1:$CLIPBOARD})"],
+    "description": "Object.values"
+  },
+  "Object entries": {
+    "scope": "javascript,typescript",
+    "prefix": ["Object", "entries"],
+    "body": ["Object.entries(${1:$CLIPBOARD})"],
+    "description": "Object.entries"
+  },
+  "Filter indices": {
+    "scope": "javascript,typescript",
+    "prefix": ["Object", "entries"],
+    "body": ["filterIndices(${1:$CLIPBOARD}, (d, i) => true)"],
+    "description": "Filter indices"
   }
 }

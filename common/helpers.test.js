@@ -1,5 +1,7 @@
 import {
   countBy,
+  cumSum,
+  filterIndices,
   findMax,
   findMaxIndex,
   findMin,
@@ -8,6 +10,7 @@ import {
   indexOf,
   intersectionSet,
   isNumeric,
+  joinArray,
   matchNumbers,
   md5,
   minSearch,
@@ -27,6 +30,7 @@ import {
   transpose,
   unionSet,
   uniquePermutations,
+  zip,
 } from ".";
 
 const { exp, max } = Math;
@@ -40,6 +44,15 @@ describe("helpers", () => {
   test("sum", () => {
     expect(sum([])).toEqual(0);
     expect(sum([1, 2, 3, 4, 5])).toEqual(15);
+  });
+
+  test("cumSum", () => {
+    expect(cumSum([])).toEqual([]);
+    expect(cumSum([1, 2, 3, 4, 5])).toEqual([1, 3, 6, 10, 15]);
+  });
+
+  test("filterIndices", () => {
+    expect(filterIndices([1, 2, 3, 4, 5], (d) => d % 2)).toEqual([0, 2, 4]);
   });
 
   test("swap", () => {
@@ -91,7 +104,7 @@ describe("helpers", () => {
     expect(u).toEqual(["0", "2", "3", "7", "12", "15", "22"]);
   });
 
-  test("intersectionSet", () => {
+  test("intersectionSet / andSet", () => {
     const r1 = intersectionSet(["a", "b", "c", "d"], ["b", "c", "d", "e"]);
     r1.sort((d1, d2) => (d1 < d2 ? -1 : 1));
     expect(r1).toEqual(["b", "c", "d"]);
@@ -99,11 +112,21 @@ describe("helpers", () => {
     expect(r2).toEqual([]);
     const r3 = intersectionSet(["a", "b", "c", "d"], ["e", "f", "g", "h"]);
     expect(r3).toEqual([]);
+    const r4 = intersectionSet(["a", "b", "c", "d"], ["b", "c", "d", "h"], ["e", "c", "g", "h"]);
+    expect(r4).toEqual(["c"]);
   });
 
   test("reduceSet", () => {
     const r = reduceSet([3, 15, 0, 2, 22], [2, 0, 12, 3, 7], [], [15]);
     expect(r).toEqual(["22"]);
+  });
+
+  test("xorSet", () => {
+    const strToSet = (s) => new Set(s.split(""));
+    const xorSet = (a, b) => {
+      return new Set([...a, ...b].filter((d) => (a.has(d) ? 1 : 0) + (b.has(d) ? 1 : 0) === 1));
+    };
+    expect([...xorSet(strToSet("abcd"), strToSet("cde")).keys()].join("")).toBe("abe");
   });
 
   test("transpose", () => {
@@ -126,6 +149,20 @@ describe("helpers", () => {
       [1, 4],
       [2, 5],
       [3, 6],
+    ]);
+  });
+
+  test("zip", () => {
+    const t1 = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    const t2 = zip(t1);
+    expect(t2).toEqual([
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
     ]);
   });
 
@@ -215,6 +252,7 @@ describe("helpers", () => {
   test("uniquePermutations", () => {
     expect(uniquePermutations(["a", "b", "c"]).length).toEqual(6);
     expect(uniquePermutations(["a", "a", "a", "b", "b", "b"]).length).toEqual(20);
+    expect(uniquePermutations(["a", "b", "c"]).map((d) => d.join("")).join(",")).toEqual("abc,acb,bac,bca,cab,cba"); // prettier-ignore
   });
 
   test("indexOf", () => {
@@ -419,6 +457,15 @@ describe("helpers", () => {
 
     const a3 = "abc xyz def".split("").map((d) => (d === " " ? null : d));
     expect(splitArray(a3).map((d) => d.join(""))).toEqual(["abc", "xyz", "def"]);
+  });
+
+  test("joinArray", () => {
+    const a1 = [1, 2, 3, 4, 5, 6, 7, 8];
+    const a2 = splitArray(a1, (d) => d === 3);
+    expect(joinArray(a2, [3])).toEqual(a1);
+    expect(joinArray(a2)).toEqual(a1.filter((d) => d !== 3));
+    expect(joinArray([])).toEqual([]);
+    expect(joinArray([[], [], []])).toEqual([]);
   });
 
   test("nodeFromHash", () => {

@@ -55,10 +55,10 @@ function calc(infecteds, carrier, nBursts, part) {
   return n;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let nBursts1 = 10_000;
   let nBursts2 = 10_000_000;
-  if (f === "example1.txt") {
+  if (filename === "example1.txt") {
     nBursts1 = 70;
     nBursts2 = 100;
   }

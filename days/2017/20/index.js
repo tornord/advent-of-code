@@ -121,7 +121,7 @@ function calc2(ps) {
 }
 
 export default function (inputRows) {
-  const input = parseTable(inputRows.map((r) => r.replace(/< /g, "<")));
+  const input = parseTable(inputRows);
   const ps = input.map((d) => ({ p: d.slice(0, 3), v: d.slice(3, 6), a: d.slice(6, 9) }));
   return [calc1(ps), calc2(ps)];
 }

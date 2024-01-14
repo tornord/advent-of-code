@@ -13,6 +13,11 @@ export const prod = (xs) => xs.reduce((p, c) => p * c, 1);
 export const isFunction = (f) => typeof f === "function";
 export const md5 = (s) => createHash("md5").update(s).digest("hex");
 export const reverseString = (str) => str.split("").reverse().join("");
+export const cumSum = (xs) =>
+  xs.reduce((p, c, i) => {
+    p.push((p?.[i - 1] ?? 0) + c);
+    return p;
+  }, []);
 
 /**
  * range, same as d3 range, but end is inclusive (d3 range end is exclusive). And sign of step size is ignored.
@@ -42,13 +47,13 @@ export function toDict(xs, keyFun = null, valueFun = null) {
 }
 
 export function groupBy(xs, keyFun = (d) => d, valueFun = (d) => d) {
-  const dict = Object.assign({}, ...xs.map((d, i) => ({ [keyFun(d, i)]: [] })));
+  const dict = toDict(xs, keyFun, () => []);
   xs.forEach((d, i) => dict[keyFun(d, i)].push(valueFun(d, i)));
   return dict;
 }
 
 export function countBy(xs, keyFun = (d) => d) {
-  const dict = Object.assign({}, ...xs.map((d, i) => ({ [keyFun(d, i)]: [] })));
+  const dict = toDict(xs, keyFun, () => []);
   xs.forEach((d, i) => dict[keyFun(d, i)]++);
   return dict;
 }
@@ -63,13 +68,22 @@ export const unionSet = (xs, ...rest) => {
   return Object.keys(dict);
 };
 
-export const intersectionSet = (xs, ys) => {
-  const dict = toDict(xs, null, false);
-  for (const y of ys) {
-    dict[y] = dict[y] === false;
+/**
+ * intersectionSet calculates the intersection (and) of arrays
+ * @param {[any]} xs
+ * @param  {...[any]} rest
+ * @returns {[any]}
+ */
+export const intersectionSet = (xs, ...rest) => {
+  const dict = toDict(xs, null, 1);
+  for (const ys of rest) {
+    for (const y of ys) {
+      dict[y] = 1 + (dict[y] ?? 0);
+    }
   }
+  const n = rest.length + 1;
   return Object.entries(dict)
-    .filter((d) => d[1] === true)
+    .filter((d) => d[1] === n)
     .map((d) => d[0]);
 };
 
@@ -86,7 +100,7 @@ export const reduceSet = (startSet, ...subtractorSets) => {
 };
 
 /**
- * Matrix transpose
+ * Matrix transpose, also called zip in python.
  * @param {any[][]} mat matrix of dimension {r x c}
  * @returns {any[][]} matrix of dimension {c x r}
  */
@@ -98,6 +112,8 @@ export const transpose = (mat) => {
   }
   return res;
 };
+
+export const zip = (mat) => transpose(mat);
 
 /**
  * Rotate items within an array, from start to end (end not included).
@@ -310,10 +326,25 @@ export function splitArray(a, critFun = (d) => !d) {
   return res;
 }
 
-/** comma separated hash to 2 or 3 dimensions node object {x, y, z} */
+export function joinArray(a, sep = []) {
+  return a.reduce((p, c, i) => {
+    if (i > 0 && sep.length > 0) {
+      p.push(...sep);
+    }
+    p.push(...c);
+    return p;
+  }, []);
+}
+
+/** Comma separated hash to 2 or 3 dimensions node object {x, y, z}
+ * @param {string} h
+ * @returns {{x: number, y: number, z: number}}
+ */
 export const nodeFromHash = (h) =>
   toDict(
     h.split(",").map(Number),
     (_, i) => String.fromCharCode(120 + i), // x, y, z
     (d) => d
   );
+
+export const filterIndices = (xs, filterFun) => xs.map((d, i) => (filterFun(d, i) ? i : -1)).filter((d) => d !== -1);

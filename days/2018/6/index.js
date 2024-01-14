@@ -87,9 +87,9 @@ function plotImage(vs, bounds) {
   console.log(m.map((d) => d.join("")).join("\n")); // eslint-disable-line no-console
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let totalDistLimit = 10_000;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     totalDistLimit = 32;
   }
   const input = inputRows.map((r) => r.split(/, ?/g).map(Number));

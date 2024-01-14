@@ -47,10 +47,10 @@ function calc1(input, textHeight, runOcr = false) {
   return null;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let textHeight = 9;
   let runOcr = true;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     textHeight = 7;
     runOcr = false;
   }

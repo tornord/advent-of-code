@@ -1,4 +1,4 @@
-import { dijkstra, toDict } from "../../../common";
+import { floodFill, toDict } from "../../../common";
 import { knotHash } from "../knotHash.js";
 
 const DIRS = [[-1, 0], [1, 0], [0, -1], [0, 1]]; // prettier-ignore
@@ -31,18 +31,14 @@ const toHash = (n) => `${n.x},${n.y}`;
 function calcGroups(squares) {
   const backwardNeighbors = (n) =>
     DIRS.map(([dx, dy]) => ({ x: n.x + dx, y: n.y + dy })).filter((d) => toHash(d) in squares); // prettier-ignore
-  const gs = toDict(Object.keys(squares), (d) => d, () => null); // prettier-ignore
+  const gs2 = toDict(Object.keys(squares), (d) => d, () => false); // prettier-ignore
   let n = 0;
-  const nextUnexplored = () => Object.keys(gs).find((d) => gs[d] === null) ?? null;
+  const nextUnexplored = () => Object.keys(gs2).find((d) => gs2[d] === false) ?? false;
   let t = nextUnexplored();
   while (t) {
     if (!t) break;
-    const cs = dijkstra(squares[t], backwardNeighbors, () => 1, toHash);
-    for (const p of Object.keys(squares)) {
-      if (p in cs) {
-        gs[p] = n;
-      }
-    }
+    const cs2 = floodFill(squares[t], backwardNeighbors, toHash);
+    cs2.forEach((p) => (gs2[toHash(p)] = true));
     n++;
     t = nextUnexplored();
   }

@@ -24,7 +24,7 @@ function parseAsmInstr(_instrCodes) {
   res.push("const v = (x) => (isNumeric(x) ? Number(x) : regs[x] ?? 0)");
   res.push("let pc = 0");
   res.push("while (pc >= 0 && pc < prog.length) {");
-  res.push("const [cmd, x, y] = progArrs[pc]"); // prettier-ignore
+  res.push("const [cmd, x, y] = progArrs[pc]");
   res.push("let jumpPc = null");
   res.push("switch (cmd) {");
   for (const key in _instrCodes) {
@@ -178,6 +178,6 @@ function calc2(prog) {
 }
 
 export default function (inputRows) {
-  const input = inputRows.map((r) => r);
+  const input = inputRows.slice();
   return [calc1(input), calc2(input)];
 }

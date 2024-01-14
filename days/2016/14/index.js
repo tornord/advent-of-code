@@ -53,9 +53,9 @@ function calc(input, hashFun) {
   return i0;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let nTimes = 2016;
-  if (f === "test.txt") {
+  if (filename === "test.txt") {
     nTimes = 1;
   }
   const hashFun1 = (salt, n) => md5(`${salt}${n}`);

@@ -71,10 +71,10 @@ function calc2(input, nWorkers, timeBase) {
   return t;
 }
 
-export default function (inputRows, f) {
+export default function (inputRows, filename) {
   let nWorkers = 5;
   let timeBase = 60;
-  if (f === "example.txt") {
+  if (filename === "example.txt") {
     nWorkers = 2;
     timeBase = 0;
   }

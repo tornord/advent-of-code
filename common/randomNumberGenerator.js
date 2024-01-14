@@ -1,5 +1,7 @@
 // https://stackoverflow.com/questions/521295/seeding-the-random-number-generator-in-javascript
 
+import { newArray } from "./helpers";
+
 function cyrb128(str) {
   let h1 = 1779033703,
     h2 = 3144134277,
@@ -76,4 +78,15 @@ export function secondRandom(r0, dist, r1) {
     return r1;
   }
   return r1 + 2 * dist;
+}
+
+export function randomIndices(nr, nTot, rnd = Math.random) {
+  const res = [];
+  const idxs = newArray(nTot, (d) => d);
+  for (let i = 0; i < nr; i++) {
+    const irnd = Math.floor(rnd() * idxs.length);
+    res.push(idxs[irnd]);
+    idxs[irnd] = idxs.pop();
+  }
+  return res;
 }

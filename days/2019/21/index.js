@@ -8,7 +8,7 @@ function runSpringcode(prog, codeStr, endCmd) {
     .split("")
     .map((d) => d.charCodeAt(0));
   const res = emulate(prog, c2);
-  return res.output;
+  return res;
 }
 
 function calc1(prog) {

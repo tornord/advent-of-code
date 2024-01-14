@@ -1,20 +1,25 @@
-import { resolve, sep } from "path";
+import { join, resolve, sep } from "path";
 import fs from "fs";
 
 import * as dotenv from "dotenv";
 import axios from "axios";
+import { fetchDescription } from "./scrape-aoc.js";
 
 dotenv.config();
 axios.defaults.withCredentials = true;
 
 export async function fetchInput(year, day) {
   if (!year || !day) throw new Error("Missing year/day");
-  const fn = resolve(".", "days", year, day, "input.txt");
-  if (fs.existsSync(fn)) {
-    const f = fs.readFileSync(fn, "utf-8");
+  const dir = resolve(".", "days", year, day);
+  const fnInput = join(dir, "input.txt");
+  if (fs.existsSync(fnInput)) {
+    const f = fs.readFileSync(fnInput, "utf-8");
     if (f.length > 0) {
       const rs = f.split("\n").filter((d) => Boolean(d.trim()));
-      if (rs.length > 0) throw new Error("File already exists");
+      if (rs.length > 0) {
+        console.log("Input file already exists"); // eslint-disable-line
+        return;
+      }
     }
   }
   let session = null;
@@ -34,11 +39,20 @@ export async function fetchInput(year, day) {
   if (typeof data === "number") {
     data = String(data);
   }
-  fs.writeFileSync(fn, data, "utf-8");
+  fs.writeFileSync(fnInput, data, "utf-8");
   // console.log(resp.data);
 }
 
-function main() {
+async function fetchExample(year, day) {
+  const desc = await fetchDescription(year, day);
+  if (desc.example) {
+    const dir = resolve(".", "days", year, day);
+    const fnExample = join(dir, "example.txt");
+    fs.writeFileSync(fnExample, desc.example, "utf-8");
+  }
+}
+
+async function main() {
   const dir = process.env.TEST_DIR ?? process.cwd();
 
   if (process.env.TEST_DIR || process.cwd()) {
@@ -46,7 +60,8 @@ function main() {
     if (dirs.at(-3) !== "days") throw new Error("Can only run in a day directory");
     const year = dirs.at(-2);
     const day = dirs.at(-1);
-    fetchInput(year, day);
+    await fetchInput(year, day);
+    await fetchExample(year, day);
   }
 }
 

@@ -1,10 +1,10 @@
-import { dijkstra, sum } from "../../../common";
+import { floodFill, sum } from "../../../common";
 
 function calc1(input) {
   const revMap = {};
   input.forEach(([k, v]) => v.forEach(([, d]) => (revMap[d] ??= []).push(k)));
   const backwardNeighbors = (n) => revMap[n] ?? [];
-  const cs = dijkstra("shiny gold", backwardNeighbors);
+  const cs = floodFill("shiny gold", backwardNeighbors);
   return Object.keys(cs).length - 1;
 }
 

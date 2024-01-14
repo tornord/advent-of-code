@@ -1,4 +1,4 @@
-import { aStar, aStarFindPath, newMatrix, parseTable } from "../../../common";
+import { aStar, aStarFindPath, newMatrix, parseTable, unitCircle } from "../../../common";
 import { strict as assert } from "node:assert";
 
 const { abs, max, min } = Math;
@@ -18,7 +18,7 @@ function calc1(input) {
 }
 
 const toKey = ({ x, y }) => `${x},${y}`;
-const STEPS = [[0, -1], [0, 1], [-1, 0], [1, 0]].map((d) => ({ x: d[0], y: d[1] })); // prettier-ignore
+const STEPS = unitCircle(4, 0);
 const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y });
 const dist = (n0, n1) => abs(n1.x - n0.x) + abs(n1.y - n0.y);
 const insideMatrix = (mat, n) => n.x >= 0 && n.y >= 0 && n.x < mat[0].length && n.y < mat.length;
@@ -55,7 +55,7 @@ function solveMove({ mat, steps, target }, start, end, via) {
   };
   const costs = aStar(start, neighbors, dist, hCost, toKey);
   const path = aStarFindPath(costs, start, neighbors, toKey);
-  assert.deepEqual(path.length > 0, true); // prettier-ignore
+  assert.deepEqual(path.length > 0, true);
   path.push(end);
   const res = mat.map((d) => d.map((e) => ({ ...e })));
   path.forEach((d, i, a) => {
@@ -92,15 +92,15 @@ function calc2(input) {
     x: startState.goal.x - 1,
     y: startState.goal.y,
   });
-  const minSize = min(...s1.mat.slice(0, 2).flat().map((d) => d.size)); // prettier-ignore
-  const maxUsed = max(...s1.mat.slice(0, 2).flat().map((d) => d.used)); // prettier-ignore
+  const fs = s1.mat.slice(0, 2).flat();
+  const minSize = min(...fs.map((d) => d.size));
+  const maxUsed = max(...fs.map((d) => d.used));
   assert.deepEqual(minSize >= maxUsed, true);
   return s1.steps + 5 * (startState.goal.x - 1);
 }
 
 export default function (inputRows) {
-  let input = parseTable(inputRows.slice(2).map((r) => r.replace(/ {2,}/g, " ")));
-  input = input.map((r) => r.map((d, i) => Number(i >= 2 ? d.slice(0, -1) : d.slice(1))));
+  let input = parseTable(inputRows.slice(2));
   input = input.map((d) => ({ x: d[0], y: d[1], size: d[2], used: d[3], avail: d[4] }));
   input.forEach((r) => assert.deepEqual(r.used + r.avail === r.size, true));
   return [calc1(input), calc2(input)];

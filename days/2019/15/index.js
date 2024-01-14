@@ -28,8 +28,8 @@ function exploreNeighbors(mat, prog, n) {
     if (!(k in mat)) {
       const m = mat[toHash(n)];
       const path = [...m.path, Number(d.id)];
-      const r = emulate(prog.slice(), path.slice());
-      const c = r.output.at(-1);
+      const r = emulate(prog, [...path, 0]);
+      const c = r.at(-1);
       mat[k] = { ...p, c: c === 0 ? "#" : c === 2 ? "O" : ".", path };
       if (c !== 0) {
         res.push({ ...p, path });

@@ -1,4 +1,4 @@
-import { sortedInsert } from ".";
+import { groupBy, sortedInsert } from ".";
 
 /**
  * a* algorithm
@@ -18,7 +18,9 @@ export function aStar(start, neighbors, gCost, hCost, toHash) {
   while (queue.length > 0) {
     const q = queue.shift();
     q.closed = true;
-    if (hCost(q.node) === 0) return costs;
+    if (hCost(q.node) === 0) {
+      return costs;
+    }
     const ns = neighbors(q.node);
     for (const n of ns) {
       const nHash = toHash(n);
@@ -55,8 +57,9 @@ export function aStar(start, neighbors, gCost, hCost, toHash) {
  */
 export function aStarFindPath(costs, start, neighbors, toHash) {
   toHash ??= (n) => n;
-  const backNeighbors = (nodeHash) =>
-    Object.values(costs).filter((c) => neighbors(c.node).findIndex((d) => toHash(d) === nodeHash) >= 0);
+  const neighborHashes = Object.values(costs).map((c) => neighbors(c.node).map((d) => [toHash(d), c])).flat();
+  const backLookup = groupBy(neighborHashes, (d) => d[0], (d) => d[1]); // prettier-ignore
+  const backNeighbors = (nodeHash) => backLookup[nodeHash] ?? [];
   const startHash = toHash(start);
   const target = Object.values(costs).find((d) => d.h === 0);
   if (!target) return [];
