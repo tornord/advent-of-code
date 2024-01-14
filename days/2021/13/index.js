@@ -1,6 +1,6 @@
-import { newMatrix, sum } from "../../../common";
+import { newArray, newMatrix, ocr4x6, sum } from "../../../common";
 
-const { max } = Math;
+const { ceil, max } = Math;
 
 function calcSheet(rows, fn) {
   const ny = rows.findIndex((d) => d === null);
@@ -49,8 +49,9 @@ function calc2(rows) {
   const res = calcSheet(rows, null);
   const image = res.map((r) => r.map((p) => (p ? "#" : ".")).join(""));
   if (res[0].length <= 41 && res.length <= 7) {
-    // eslint-disable-next-line no-console
-    console.log(image.join("\n"));
+    // console.log(image.join("\n"));
+    const t = newArray(ceil(image[0].length / 5), (j) => ocr4x6(image, 5 * j)).join("");
+    return t;
   }
   return image.join("");
 }
