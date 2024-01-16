@@ -34,7 +34,7 @@ function calc2(bsLava) {
   const [minY, maxY] = minMax(vs.map((d) => d[1]));
   const [minZ, maxZ] = minMax(vs.map((d) => d[2]));
 
-  // Make a flood fill of the outside of the lava. Keep 1 cell of air around the lava to ensure 
+  // Make a flood fill of the outside of the lava. Keep 1 cell of air around the lava to ensure
   // that the air is connected.
   const isBorder = ([x, y, z]) =>
     x < minX - 1 || x > maxX + 1 || y < minY - 1 || y > maxY + 1 || z < minZ - 1 || z > maxZ + 1;
