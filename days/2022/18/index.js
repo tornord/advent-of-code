@@ -1,56 +1,59 @@
-import { newMatrix } from "../../../common";
+import { floodFill, toDict } from "../../../common";
 
-const toKey = (x, y, z) => `${x},${y},${z}`;
-const VOID_LIMIT = 4000;
+const { max, min } = Math;
 
-function deltas(n) {
-  return newMatrix(2 * n, n, (r, c) => (Math.floor(r / 2) === c ? 2 * (r % 2) - 1 : 0));
-}
+const toHash = (a) => a.join(",");
+const fromHash = (a) => a.split(",").map(Number);
+const minMax = (vs) => [min(...vs), max(...vs)];
 
-// const DELTAS = [[-1,0,0],[1,0,0],[0,-1,0],[0,1,0],[0,0,-1],[0,0,1]] // prettier-ignore
-const DELTAS = deltas(3) // prettier-ignore
-
-const reachesVoid = (p, cubes, insides, outsides) => {
-  if (outsides.has(toKey(...p))) return true;
-  if (insides.has(toKey(...p))) return false;
-  const handled = new Set();
-  const queue = [p];
-  while (queue.length > 0) {
-    const [x, y, z] = queue.shift();
-    if (cubes.has(toKey(x, y, z))) continue;
-    if (handled.has(toKey(x, y, z))) continue;
-    handled.add(toKey(x, y, z));
-    if (handled.size >= VOID_LIMIT) {
-      handled.forEach((d) => outsides.add(d));
-      return true;
-    }
-    for (const [dx, dy, dz] of DELTAS) {
-      const c = [x + dx, y + dy, z + dz];
-      queue.push(c);
+function validNeighbors(p0, isValid) {
+  const res = [];
+  for (let i = 0; i < 3; i++) {
+    for (let t = -1; t <= 1; t += 2) {
+      const p = [...p0];
+      p[i] += t;
+      if (!isValid(p)) continue;
+      res.push(p);
     }
   }
-  handled.forEach((d) => insides.add(d));
-  return false;
-};
+  return res;
+}
 
-function calc(rows, part) {
-  let outsides = new Set();
-  let insides = new Set();
-  let cubes = new Set(rows.map((d) => toKey(...d)));
+function calc1(bsLava) {
   let n = 0;
-  for (const r of rows) {
-    let [x, y, z] = r;
-    for (const [dx, dy, dz] of DELTAS) {
-      let p = [x + dx, y + dy, z + dz];
-      if ((part === 1 && !cubes.has(toKey(...p))) || reachesVoid(p, cubes, insides, outsides)) {
-        n++;
-      }
-    }
+  for (const v of Object.keys(bsLava)) {
+    const ps = validNeighbors(fromHash(v), (p) => !(toHash(p) in bsLava));
+    n += ps.length;
   }
   return n;
 }
 
+function calc2(bsLava) {
+  const vs = Object.keys(bsLava).map(fromHash);
+  const [minX, maxX] = minMax(vs.map((d) => d[0]));
+  const [minY, maxY] = minMax(vs.map((d) => d[1]));
+  const [minZ, maxZ] = minMax(vs.map((d) => d[2]));
+
+  // Make a flood fill of the outside of the lava. Keep 1 cell of air around the lava to ensure 
+  // that the air is connected.
+  const isBorder = ([x, y, z]) =>
+    x < minX - 1 || x > maxX + 1 || y < minY - 1 || y > maxY + 1 || z < minZ - 1 || z > maxZ + 1;
+  const neighbors = (n) => {
+    if (isBorder(n)) return [];
+    return validNeighbors(n, (p) => !(toHash(p) in bsLava));
+  };
+  const ns = floodFill([minX - 1, minY - 1, minZ - 1], neighbors, toHash);
+  const bsAirOutside = toDict(ns, toHash, true);
+  const res = [];
+  for (const k of Object.keys(bsLava)) {
+    const ps = validNeighbors(fromHash(k), (p) => toHash(p) in bsAirOutside);
+    res.push(...ps);
+  }
+  return res.length;
+}
+
 export default function (inputRows) {
-  const rows = inputRows.map((r) => r.split(",").map(Number));
-  return [calc(rows, 1), calc(rows, 2)];
+  const input = inputRows.map((r) => r.split(",").map(Number));
+  const bsLava = toDict(input, toHash, true);
+  return [calc1(bsLava), calc2(bsLava)];
 }

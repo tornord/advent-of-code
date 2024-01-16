@@ -1,21 +1,16 @@
 import { toDict } from "../../../common";
 
-function calc(rows, n) {
-  const res = [];
-  for (const r of rows) {
-    for (let i = n; i <= r.length; i++) {
-      const s = r.slice(i - n, i).split("");
-      const t = toDict(s);
-      const m = Object.keys(t).length;
-      if (m === n) {
-        res.push(i);
-        break;
-      }
-    }
+function calc(row, n) {
+  for (let i = n; i <= row.length; i++) {
+    const s = row.slice(i - n, i).split("");
+    const t = toDict(s);
+    const m = Object.keys(t).length;
+    if (m === n) return i;
   }
-  return res;
+  return null;
 }
 
 export default function (inputRows) {
-  return [calc(inputRows, 4), calc(inputRows, 14)];
+  const input = inputRows[0];
+  return [calc(input, 4), calc(input, 14)];
 }

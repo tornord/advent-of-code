@@ -60,7 +60,7 @@ export async function fetchDescription(year, day) {
 async function main() {
   const res = [];
   for (let y = 2023; y <= 2023; y++) {
-    for (let d = 1; d <= 1; d++) {
+    for (let d = 1; d <= 25; d++) {
       const r = await fetchDescription(String(y), String(d));
       res.push(r);
     }
