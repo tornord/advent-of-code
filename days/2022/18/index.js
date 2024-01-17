@@ -36,10 +36,10 @@ function calc2(bsLava) {
 
   // Make a flood fill of the outside of the lava. Keep 1 cell of air around the lava to ensure
   // that the air is connected.
-  const isBorder = ([x, y, z]) =>
+  const isOutsideBorder = ([x, y, z]) =>
     x < minX - 1 || x > maxX + 1 || y < minY - 1 || y > maxY + 1 || z < minZ - 1 || z > maxZ + 1;
   const neighbors = (n) => {
-    if (isBorder(n)) return [];
+    if (isOutsideBorder(n)) return [];
     return validNeighbors(n, (p) => !(toHash(p) in bsLava));
   };
   const ns = floodFill([minX - 1, minY - 1, minZ - 1], neighbors, toHash);

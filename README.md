@@ -14,6 +14,7 @@ https://www.reddit.com/r/adventofcode/
 
 https://www.youtube.com/@jonathanpaulson5053
 https://www.youtube.com/@hyper-neutrino
+https://www.youtube.com/@nthistlethwaite
 
 ### Twitch
 
@@ -45,3 +46,18 @@ https://beta.vero.site/
 
 https://esolangs.org/wiki/Intcode
 https://github.com/benediktwerner/intcode
+
+## Other puzzels
+
+https://www.janestreet.com/puzzles/
+https://open.kattis.com/
+
+## Graph viewers / editors
+
+https://graphviz.org/
+https://csacademy.com/app/graph_editor/
+
+## Synacor challenge
+
+https://github.com/pankdm/synacor-challenge/tree/master
+https://wolfgang-ziegler.com/blog/synacor-challenge
