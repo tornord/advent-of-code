@@ -49,7 +49,7 @@ export function parseToken(r, idx) {
 }
 
 export function parseRow(r) {
-  r = r.replace(/[\u2014\u2014]/g, "-");
+  r = r.replace(/[\u2013\u2014]/g, "-");
   r = r.replace(/\u00A0/g, " ");
   let mStart = r.match(/^[ \t]+/);
   let indent = 0;

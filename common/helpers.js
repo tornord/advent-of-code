@@ -53,7 +53,7 @@ export function groupBy(xs, keyFun = (d) => d, valueFun = (d) => d) {
 }
 
 export function countBy(xs, keyFun = (d) => d) {
-  const dict = toDict(xs, keyFun, () => []);
+  const dict = toDict(xs, keyFun, () => 0);
   xs.forEach((d, i) => dict[keyFun(d, i)]++);
   return dict;
 }

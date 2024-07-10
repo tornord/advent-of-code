@@ -61,3 +61,7 @@ https://csacademy.com/app/graph_editor/
 
 https://github.com/pankdm/synacor-challenge/tree/master
 https://wolfgang-ziegler.com/blog/synacor-challenge
+
+## Future skill
+
+https://futureskill.com/

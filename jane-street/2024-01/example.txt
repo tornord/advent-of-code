@@ -1,0 +1,9 @@
+A A I I I I I I 3
+A B B I J J J I 9
+A B C K L J J I 10
+D C C K L M J J 13
+D E E K L M M M 13
+D E F H H H H M 8
+D F F G H G M M 7
+G G G G G G G M 2
+9 12 12 10 8 8 4 2 
