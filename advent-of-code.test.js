@@ -1,10 +1,10 @@
-import { dirname, extname, join, relative, resolve, sep } from "path";
-import { fileURLToPath } from "url";
+import { extname, join, relative, resolve, sep } from "path";
+// import { fileURLToPath } from "url";
 import fs from "fs";
 
-function dirName(meta) {
-  return dirname(fileURLToPath(meta.url));
-}
+// function dirName(meta) {
+//   return dirname(fileURLToPath(meta.url));
+// }
 
 function scanFolder(dir) {
   const name = dir.split(sep).at(-1);
@@ -59,7 +59,7 @@ export function testRunner(dir, name, files, moduleName) {
 
 function runDir(testDir) {
   const { files } = scanFolder(testDir);
-  const thisDir = dirName(import.meta);
+  const thisDir = "."; // dirName(import.meta);
   const name = testDir.split(sep).slice(-2).join("-");
   const relDir = relative(thisDir, testDir);
   const moduleName = `.${sep}${relDir}`;

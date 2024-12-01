@@ -11,7 +11,7 @@
       "skipFiles": ["<node_internals>/**"],
       "args": ["--loader=./scripts/loader.js", "${file}"],
       "env": { },
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -21,7 +21,7 @@
       "skipFiles": ["<node_internals>/**"],
       "args": ["days/2019/13/romellem/part-two.js"],
       "env": {},
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -31,7 +31,7 @@
       "skipFiles": ["<node_internals>/**"],
       "args": ["scripts/fetch-input.js"],
       "env": { "TEST_DIR": "${fileDirname}" },
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -40,7 +40,7 @@
       "name": "create day",
       "skipFiles": ["<node_internals>/**"],
       "args": ["scripts/create-day.js"],
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -48,9 +48,9 @@
       "request": "launch",
       "name": "aoc run current folder",
       "skipFiles": ["<node_internals>/**"],
-      "args": ["--loader=./scripts/loader.js", "--no-warnings=ExperimentalWarning", "${fileDirname}/loader.js"],
+      "args": ["--import=tsx/esm", "${fileDirname}/loader.js"],
       "env": { "TEST_DIR": "${fileDirname}" },
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -59,13 +59,11 @@
       "name": "aoc test current folder",
       "skipFiles": ["<node_internals>/**"],
       "args": [
-        "--experimental-vm-modules",
-        "--no-warnings=ExperimentalWarning",
         "./node_modules/.bin/jest",
         "${workspaceFolder}/advent-of-code.test.js"
       ],
       "env": { "TEST_DIR": "${fileDirname}" },
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -75,7 +73,7 @@
       "skipFiles": ["<node_internals>/**"],
       "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "${workspaceFolder}/kattis.test.js"],
       "env": { "TEST_DIR": "${fileDirname}" },
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -83,8 +81,8 @@
       "request": "launch",
       "name": "test current file",
       "skipFiles": ["<node_internals>/**"],
-      "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "${file}"],
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "args": ["./node_modules/.bin/jest", "${file}"],
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
     {
@@ -93,7 +91,7 @@
       "name": "test all",
       "skipFiles": ["<node_internals>/**"],
       "args": ["--experimental-vm-modules", "./node_modules/.bin/jest", "--silent"],
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v20.10.0/bin/node",
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     }
   ]

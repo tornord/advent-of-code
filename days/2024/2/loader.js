@@ -13,6 +13,7 @@ const files2 = fs.filter((d) => d.startsWith("example"));
 const files3 = fs.filter((d) => d.startsWith("input"));
 const files = [...files1, ...files2, ...files3];
 
+let hasRun = false;
 for (const f of files) {
   let expected;
   let inputRows = readFileSync(join(dirName, f), "utf-8").split("\n");
@@ -29,9 +30,15 @@ for (const f of files) {
     inputRows = inputRows.slice(0, nRows);
   }
   const res = dayCalc(inputRows, f);
+  hasRun = true;
   if (expected) {
     assert.deepEqual(res, expected);
   }
   // eslint-disable-next-line no-console
   console.log(f, res);
+}
+
+if (!hasRun) {
+  // eslint-disable-next-line no-console
+  console.log("No files to run");
 }
