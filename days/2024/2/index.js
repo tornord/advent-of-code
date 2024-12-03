@@ -1,51 +1,41 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
-
-import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common"; // eslint-disable-line
-import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
-import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { matchNumbers, parseTable, splitArray } from "../../../common" // eslint-disable-line
-
-const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
-const { isArray } = Array; // eslint-disable-line
+function isSafe(r) {
+  r = r.slice();
+  const diffs = [...Array(r.length - 1)].map((_, i) => r[i + 1] - r[i]);
+  const incSafe = diffs.every((d) => d >= 1 && d <= 3);
+  const decSafe = diffs.every((d) => d >= -3 && d <= -1);
+  return incSafe || decSafe;
+}
 
 function calc1(input) {
   const ny = input.length;
-  const nx = input?.[0]?.length ?? 0;
+  let res = 0;
   for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
-    for (let x = 0; x < nx; x++) {
-      //
-    }
+    res += isSafe(input[y]) ? 1 : 0;
   }
-  return 0;
+  return res;
 }
 
 function calc2(input) {
   const ny = input.length;
-  const nx = input?.[0]?.length ?? 0;
+  let res = 0;
   for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
-    for (let x = 0; x < nx; x++) {
-      //
+    const s = isSafe(input[y]);
+    if (s) {
+      res++;
+      continue;
+    }
+    for (let i = 0; i < input[y].length; i++) {
+      const r = input[y].slice(0, i).concat(input[y].slice(i + 1));
+      if (isSafe(r)) {
+        res++;
+        break;
+      }
     }
   }
-  return 0;
+  return res;
 }
 
 export default function (inputRows) {
-  let input1 = parseTable(inputRows);
-  let input2 = splitArray(inputRows, (r) => r === "");
-  let input3 = inputRows.map(matchNumbers);
-  let input4 = inputRows.map((r) => r.split(/, ?/g));
-  let input5 = inputRows.map((r) => r.split(""));
-  let input = input1;
+  const input = inputRows.map((r) => r.split(/ +/g).map((d) => Number(d)));
   return [calc1(input), calc2(input)];
 }
-
-// (r) => r.split(/[-]|: | /g);
-// (r) => r.split(" ");
-// (r) => r.split(" ").map((d, i) => (i === 0 ? d : Number(d)));
-// (r) => r.split(" ").join("");
-// (r) => r.split(/ \| /).map((d) => d.split(" "));
-// (r) => r.split("").map(Number);
-// (r) => r.split(/[,-]/g).map(Number);
