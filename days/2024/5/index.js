@@ -8,31 +8,35 @@ function isCorrect(corrDict, p, rems) {
 
 function correctOrder(corrDict, pages) {
   for (let i = 0; i < pages.length; i++) {
-    let p = pages[i];
+    const p = pages[i];
     if (!isCorrect(corrDict, p, pages.slice(i + 1))) return false;
   }
   return true;
 }
 
+function pagesRes(pages) {
+  const idx = (pages.length - 1) / 2;
+  return Number(pages[idx]);
+}
+
 function calc1(corrDict, sec2) {
-  let res = [];
+  const res = [];
   for (let i = 0; i < sec2.length; i++) {
-    let pages = sec2[i];
-    let r = correctOrder(corrDict, pages);
+    const pages = sec2[i];
+    const r = correctOrder(corrDict, pages);
     if (r) {
-      let idx = (pages.length - 1) / 2;
-      res.push(pages[idx]);
+      res.push(pagesRes(pages));
     }
   }
-  return sum(res.map(Number));
+  return sum(res);
 }
 
 function calc2(corrDict, sec2) {
-  let res = [];
+  const res = [];
   for (let i = 0; i < sec2.length; i++) {
-    let pages = sec2[i];
+    const pages = sec2[i];
     if (correctOrder(corrDict, pages)) continue;
-    let corr = [];
+    const corr = [];
     let rems = [...pages];
     while (rems.length) {
       if (rems.length === 1) {
@@ -40,8 +44,8 @@ function calc2(corrDict, sec2) {
         break;
       }
       for (let j = 0; j < rems.length; j++) {
-        let p = rems[j];
-        let rest = rems.slice(0, j).concat(rems.slice(j + 1));
+        const p = rems[j];
+        const rest = rems.slice(0, j).concat(rems.slice(j + 1));
         if (isCorrect(corrDict, p, rest)) {
           corr.push(p);
           rems = rest;
@@ -49,16 +53,15 @@ function calc2(corrDict, sec2) {
         }
       }
     }
-    let idx = (corr.length - 1) / 2;
-    res.push(corr[idx]);
+    res.push(pagesRes(corr));
   }
-  return sum(res.map(Number));
+  return sum(res);
 }
 
 export default function (inputRows) {
-  let idx = inputRows.findIndex((r) => !r);
-  let sec1 = inputRows.slice(0, idx).map((r) => r.split(/\|/g));
-  let corrDict = new Set(sec1.map((d) => toKey(...d)));
-  let sec2 = inputRows.slice(idx + 1).map((r) => r.split(/,/g));
+  const idx = inputRows.findIndex((r) => !r);
+  const sec1 = inputRows.slice(0, idx).map((r) => r.split(/\|/g));
+  const corrDict = new Set(sec1.map((d) => toKey(...d)));
+  const sec2 = inputRows.slice(idx + 1).map((r) => r.split(/,/g));
   return [calc1(corrDict, sec2), calc2(corrDict, sec2)];
 }
