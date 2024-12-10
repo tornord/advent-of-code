@@ -18,8 +18,7 @@ const toKey = (p) => `${p.x},${p.y}`;
 const pathToKey1 = (ps) => [0, ps.length - 1].map((d) => toKey(ps[d])).join("-");
 const pathToKey2 = (ps) => ps.map(toKey).join("-");
 
-function calc(mat, pathToKey) {
-  const wayPoints = [...Array(10).keys()].map((d) => findChar(mat, String(d)));
+function calc(wayPoints, pathToKey) {
   let starts = wayPoints[0];
   let trailDict = Object.fromEntries(starts.map((d) => [d]).map((d) => [toKey(d[0]), d]));
   for (let i = 1; i < wayPoints.length; i++) {
@@ -46,6 +45,7 @@ function calc(mat, pathToKey) {
 }
 
 export default function (inputRows) {
-  const input = inputRows.map((r) => r.split(""));
-  return [calc(input, pathToKey1), calc(input, pathToKey2)];
+  const mat = inputRows.map((r) => r.split(""));
+  const wayPoints = [...Array(10).keys()].map((d) => findChar(mat, String(d)));
+  return [calc(wayPoints, pathToKey1), calc(wayPoints, pathToKey2)];
 }
