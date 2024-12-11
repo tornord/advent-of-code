@@ -28,9 +28,7 @@ function countPath(mat, p, dirIdx) {
   while (p.x >= 0 && p.x < nx && p.y >= 0 && p.y < ny) {
     let dir = dirs[dirIdx];
     const pn = { x: p.x + dir.x, y: p.y + dir.y, d: dirIdx };
-    if (pn.x < 0 || pn.x >= nx || pn.y < 0 || pn.y >= ny) {
-      break;
-    }
+    if (pn.x < 0 || pn.x >= nx || pn.y < 0 || pn.y >= ny) break;
     const r = mat[pn.y][pn.x];
     if (r === ".") {
       if (hist[toKey2(pn)]) {
