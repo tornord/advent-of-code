@@ -38,7 +38,7 @@ function createDay(year, day) {
 
   copyAssetFile(".", "index.js", assetFolder, destFolder, false);
   copyAssetFile(".", "loader.js", assetFolder, destFolder, false);
-  copyAssetFile(".", ".eslintrc.json", assetFolder, destFolder);
+  copyAssetFile(".", "eslint.config.mjs", assetFolder, destFolder);
 
   for (const d of ["example.txt", "input.txt"]) {
     const f = join(destFolder, d);

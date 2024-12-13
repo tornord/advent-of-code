@@ -36,6 +36,7 @@
     "graphviz": "^0.0.9",
     "legendary-mazes": "^1.2.0",
     "md5": "^2.3.0",
-    "prettier": "^3.4.1"
+    "prettier": "^3.4.1",
+    "yalps": "^0.5.6"
   }
 }
