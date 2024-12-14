@@ -7,10 +7,10 @@ export default [
   eslint.configs.recommended,
   {
     // root: true,
-    env: {
-      node: true,
-      es2020: true,
-    },
+    // env: {
+    //   node: true,
+    //   es2020: true,
+    // },
     // extends: ["eslint:recommended"],
     // parserOptions: {
     //   ecmaVersion: "latest",
@@ -23,6 +23,7 @@ export default [
     //   process: false,
     // },
     languageOptions: {
+      ecmaVersion: "latest",
       sourceType: "module",
     },
     settings: {},

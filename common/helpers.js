@@ -39,7 +39,7 @@ export function swap(a, i, j) {
   a[j] = s;
 }
 
-export function toDict(xs, keyFun = null, valueFun = null) {
+export function toDict(xs, keyFun = null, valueFun = true) {
   return xs.reduce((p, d, i) => {
     p[isFunction(keyFun) ? keyFun(d, i) : d] = isFunction(valueFun) ? valueFun(d, i) : valueFun;
     return p;
@@ -348,3 +348,5 @@ export const nodeFromHash = (h) =>
   );
 
 export const filterIndices = (xs, filterFun) => xs.map((d, i) => (filterFun(d, i) ? i : -1)).filter((d) => d !== -1);
+
+export const negMod = (a, m) => (a >= 0 ? a % m : m - (-a % m)) % m;

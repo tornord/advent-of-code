@@ -1,51 +1,80 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+import { floodFill, negMod, newMatrix, parseTable, prod, toDict } from "../../../common";
 
-import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common"; // eslint-disable-line
-import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
-import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { matchNumbers, parseTable, splitArray } from "../../../common" // eslint-disable-line
+const toKey = ({ x, y }) => `${x},${y}`;
 
-const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
-const { isArray } = Array; // eslint-disable-line
+const calcPos = (pos, t, size) =>
+  pos.map((p) => ({ x: negMod(p.x + t * p.vx, size.w), y: negMod(p.y + t * p.vy, size.h) }));
 
-function calc1(input) {
-  const ny = input.length;
-  const nx = input?.[0]?.length ?? 0;
-  for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
-    for (let x = 0; x < nx; x++) {
-      //
+function calc1(pos, size) {
+  const newPos = calcPos(pos, 100, size);
+  const qs = countQuadrants(newPos, size);
+  return prod(qs);
+}
+
+function countQuadrants(pos, size) {
+  let q1 = 0,
+    q2 = 0,
+    q3 = 0,
+    q4 = 0;
+  const w2 = (size.w - 1) / 2;
+  const h2 = (size.h - 1) / 2;
+  for (const p of pos) {
+    if (p.x < w2 && p.y < h2) q1 += 1;
+    if (p.x > w2 && p.y < h2) q2 += 1;
+    if (p.x < w2 && p.y > h2) q3 += 1;
+    if (p.x > w2 && p.y > h2) q4 += 1;
+  }
+  return [q1, q2, q3, q4];
+}
+
+function plotMap(pos, size) {
+  const map = newMatrix(size.h, size.w, () => ".");
+  for (const p of pos) {
+    map[p.y][p.x] = "#";
+  }
+  return map.map((r) => r.join("")).join("\n");
+}
+
+function isChristmasTree(pos) {
+  const dict = toDict(pos, toKey);
+  const neighbors = (p) =>
+    [
+      { x: p.x - 1, y: p.y },
+      { x: p.x + 1, y: p.y },
+    ].filter((c) => dict[toKey(c)]);
+  const done = {};
+  for (const p of pos) {
+    if (done[toKey(p)]) continue;
+    const cs = floodFill(p, neighbors, toKey);
+    for (const c of cs) {
+      done[toKey(c)] = true;
+    }
+    if (cs.length >= 8) {
+      return true;
     }
   }
-  return 0;
+  return false;
 }
 
-function calc2(input) {
-  const ny = input.length;
-  const nx = input?.[0]?.length ?? 0;
-  for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
-    for (let x = 0; x < nx; x++) {
-      //
+function calc2(pos, size) {
+  const N = 100_000;
+  for (let i = 0; i < N; i++) {
+    const newPos = calcPos(pos, i, size);
+    if (isChristmasTree(newPos, size)) {
+      const m = plotMap(newPos, size); // eslint-disable-line no-unused-vars
+      // console.log(m);
+      return i;
     }
   }
-  return 0;
+  return -1;
 }
 
-export default function (inputRows) {
-  let input1 = parseTable(inputRows);
-  let input2 = splitArray(inputRows, (r) => r === "");
-  let input3 = inputRows.map(matchNumbers);
-  let input4 = inputRows.map((r) => r.split(/, ?/g));
-  let input5 = inputRows.map((r) => r.split(""));
-  let input = input1;
-  return [calc1(input), calc2(input)];
+export default function (inputRows, name) {
+  const input = parseTable(inputRows);
+  const pos = input.map((r) => ({ x: r[0], y: r[1], vx: r[2], vy: r[3] }));
+  let s = { w: 11, h: 7 };
+  if (name === "input.txt") {
+    s = { w: 101, h: 103 };
+  }
+  return [calc1(pos, s), name === "input.txt" ? calc2(pos, s) : 0];
 }
-
-// (r) => r.split(/[-]|: | /g);
-// (r) => r.split(" ");
-// (r) => r.split(" ").map((d, i) => (i === 0 ? d : Number(d)));
-// (r) => r.split(" ").join("");
-// (r) => r.split(/ \| /).map((d) => d.split(" "));
-// (r) => r.split("").map(Number);
-// (r) => r.split(/[,-]/g).map(Number);

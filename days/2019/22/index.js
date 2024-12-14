@@ -7,7 +7,7 @@ import { matchNumbers, parseTable, splitArray } from "../../../common"; // eslin
 
 const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
 const { isArray } = Array; // eslint-disable-line
-const negMod = (a, m) => (a >= 0 ? a % m : m - (-a % m));
+const negMod = (a, m) => (a >= 0 ? a % m : m - (-a % m)) % m;
 assert.deepEqual([-13, -3, 3, 13].map((d) => negMod(d, 10)), [7, 7, 3, 3]); // prettier-ignore
 
 function diffs(vs, mod) {
