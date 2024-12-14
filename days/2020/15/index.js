@@ -1,6 +1,6 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+import { strict as assert } from "node:assert";
 
-import { newArray } from "../../../common"; // eslint-disable-line
+import { newArray } from "../../../common";
 
 function generateSeq(start, n) {
   const res = [...start];

@@ -1,13 +1,6 @@
 /* eslint-disable prefer-const  */
-/* eslint-disable no-console  */
-/* eslint-disable semi  */
-/* eslint-disable comma-spacing  */
-/* eslint-disable space-infix-ops  */
-/* eslint-disable arrow-spacing  */
-/* eslint-disable arrow-parens  */
-/* eslint-disable quotes  */
-/* eslint-disable no-extra-semi  */
 
+// eslint-disable-next-line no-unused-vars
 const parseTempl = (expr) =>
   expr
     .join("")

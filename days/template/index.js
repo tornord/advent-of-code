@@ -3,10 +3,15 @@ import { strict as assert } from "node:assert"; // eslint-disable-line
 import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common"; // eslint-disable-line
 import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
 import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { matchNumbers, parseTable, splitArray } from "../../../common" // eslint-disable-line
+import { matchNumbers, parseTable, splitArray } from "../../../common"; // eslint-disable-line
+import { unitCircle } from "@common";
 
 const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
 const { isArray } = Array; // eslint-disable-line
+
+// const DIRS = unitCircle(4); // right, down, left, up
+// const DIRS = unitCircle(8); // right, right-down, down, left-down, left, left-up, up, right-up
+// const DIRS = unitCircle(4, 0, 45); // right-down, left-down, left-up, right-up
 
 function calc1(input) {
   const ny = input.length;
@@ -33,6 +38,12 @@ function calc2(input) {
 }
 
 export default function (inputRows) {
+  // const mat = inputRows.map((r) => r.split(""));
+  // const dict = groupBy(
+  //   mat.map((r, i) => r.map((c, j) => ({ x: j, y: i, c }))).flat(),
+  //   (d) => d.c,
+  //   (d) => d
+  // );
   let input1 = parseTable(inputRows);
   let input2 = splitArray(inputRows, (r) => r === "");
   let input3 = inputRows.map(matchNumbers);

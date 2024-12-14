@@ -58,8 +58,7 @@ function calc1(mat, rocks) {
   return sum(res);
 }
 
-// eslint-disable-next-line no-unused-vars
-function calc2(mat, rocks, hashes) {
+function calc2(mat, rocks, _hashes) {
   const MEMO = newArray(rocks.length, () => ({}));
   const toKey = (d) => `${d.x},${d.y}`;
   const ny = mat.length;
@@ -91,7 +90,7 @@ function calc2(mat, rocks, hashes) {
   }
   const res = rocks.map((d) => ny - d.y);
   // let m = newMatrix(ny, mat[0].length, ()=>".");
-  // hashes.forEach((d) => (m[d.y][d.x] = "#"));
+  // _hashes.forEach((d) => (m[d.y][d.x] = "#"));
   // rocks.forEach((d) => (m[d.y][d.x] = "O"));
   return sum(res);
 }

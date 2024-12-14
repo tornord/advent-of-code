@@ -3,7 +3,7 @@ import { sum } from "../../../common";
 const { max, min } = Math;
 
 function allSums(a) {
-  let res = [];
+  const res = [];
   for (let i = 0; i < a.length - 1; i++) {
     for (let j = i + 1; j < a.length; j++) {
       res.push(a[i] + a[j]);
@@ -15,7 +15,7 @@ function allSums(a) {
 function calc1(input, size) {
   for (let y = size; y < input.length; y++) {
     const r = input[y];
-    let ns = allSums(input.slice(y - size, y));
+    const ns = allSums(input.slice(y - size, y));
     if (!ns.includes(r)) {
       return r;
     }
@@ -26,7 +26,7 @@ function calc1(input, size) {
 function calc2(input, n) {
   for (let y = 2; y <= input.length; y++) {
     for (let j = 0; j < y - 1; j++) {
-      let rs = input.slice(j, y);
+      const rs = input.slice(j, y);
       if (sum(rs) === n) {
         return min(...rs) + max(...rs);
       }
@@ -36,11 +36,11 @@ function calc2(input, n) {
 }
 
 export default function (inputRows, filename) {
-  let input = inputRows.map(Number);
+  const input = inputRows.map(Number);
   let size = 25;
   if (filename === "example.txt") {
     size = 5;
   }
-  let n = calc1(input, size);
+  const n = calc1(input, size);
   return [n, calc2(input, n)];
 }

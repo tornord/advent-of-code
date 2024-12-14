@@ -16,7 +16,6 @@ function readInput(input) {
   return clay;
 }
 
-// eslint-disable-next-line no-unused-vars
 function plotImage(dicts, bounds) {
   const { xmin, xmax, ymin, ymax } = bounds;
   const m = newMatrix(ymax - ymin + 1, xmax - xmin + 1, () => ".");

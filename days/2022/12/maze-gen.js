@@ -29,8 +29,8 @@ export function hasWall(walls, from, to) {
 function addWalls(walls, explorationTree, nx, ny, dx, dy) {
   for (let x = 0; x < nx - dx; x++) {
     for (let y = 0; y < ny - dy; y++) {
-      let p0 = explorationTree[toKey({ x, y })];
-      let p1 = explorationTree[toKey({ x: x + dx, y: y + dy })];
+      const p0 = explorationTree[toKey({ x, y })];
+      const p1 = explorationTree[toKey({ x: x + dx, y: y + dy })];
       if (
         (p0.parent && toKey(p0.parent.position) === toKey(p1.position)) ||
         (p1.parent && toKey(p1.parent.position) === toKey(p0.position))
@@ -45,9 +45,9 @@ function addWalls(walls, explorationTree, nx, ny, dx, dy) {
 export function generateMaze(nx, ny, start, seed) {
   const random = randomNumberGenerator(seed);
   let current = newNode(start ?? { x: floor(nx * random()), y: floor(ny * random()) }, null);
-  let visiteds = newMatrix(ny, nx, () => false);
+  const visiteds = newMatrix(ny, nx, () => false);
   visiteds[current.position.y][current.position.x] = true;
-  let explorationTree = {};
+  const explorationTree = {};
   explorationTree[toKey(current.position)] = current;
 
   while (Object.values(explorationTree).length < nx * ny && current !== null) {
@@ -63,7 +63,7 @@ export function generateMaze(nx, ny, start, seed) {
     explorationTree[toKey(nn.position)] = nn;
     current = nn;
   }
-  let walls = [];
+  const walls = [];
   addWalls(walls, explorationTree, nx, ny, 1, 0);
   addWalls(walls, explorationTree, nx, ny, 0, 1);
   return walls;

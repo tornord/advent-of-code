@@ -1,4 +1,4 @@
-import { findMax, groupBy, parseTable, sum, toDict } from "../../../common"; // eslint-disable-line
+import { findMax, groupBy, parseTable, sum, toDict } from "../../../common";
 
 const toState = (ids, useds, nextPin) => ({ ids, useds, nextPin });
 

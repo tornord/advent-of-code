@@ -32,7 +32,7 @@ export function findRangeEnd(i0, inRangeCheckFun, dir = 1, maxStepSize = 1 << 24
 }
 
 /**
- * Binary search for the end of range, where the function fun is not linear anymore. The step size doubles when in range,
+ * Binary search for the end of range. The step size doubles when in range,
  * and then halves when out of range.
  * @param {number} i0 Start index
  * @param {(number) => number} fun The linear function to search

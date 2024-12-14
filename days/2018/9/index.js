@@ -1,5 +1,6 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
-import { LinkedList, findMax, newArray } from "../../../common"; // eslint-disable-line
+import { strict as assert } from "node:assert";
+
+import { findMax, LinkedList, newArray } from "../../../common";
 
 function placeMarble2(list, marble) {
   if (marble % 23 === 0) {

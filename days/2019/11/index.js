@@ -24,7 +24,6 @@ function runRobot2() {
   return TEST_SEQ.slice(TEST_IDX - 2, TEST_IDX);
 }
 
-// eslint-disable-next-line
 function plotBoard(ps) {
   const ns = Object.keys(ps).map(nodeFromHash);
   const xs = ns.map((p) => p.x);

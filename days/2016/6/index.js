@@ -1,10 +1,10 @@
 import { countBy } from "../../../common";
 
 function calc(input, k) {
-  let code = [];
+  const code = [];
   for (let j = 0; j < input[0].length; j++) {
-    let rs = input.map((d) => d[j]);
-    let gs = Object.entries(countBy(rs)).map(([c, v]) => ({ c, v }));
+    const rs = input.map((d) => d[j]);
+    const gs = Object.entries(countBy(rs)).map(([c, v]) => ({ c, v }));
     gs.sort((d1, d2) => k * (d1.v - d2.v));
     code.push(gs[0].c);
   }

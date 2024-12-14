@@ -1,4 +1,4 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+import { strict as assert } from "node:assert";
 
 function spin(pos, steps, arr, nextInsert) {
   pos = (pos + steps) % arr.length;

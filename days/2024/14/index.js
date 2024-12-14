@@ -37,7 +37,7 @@ function plotMap(pos, size) {
 
 function isChristmasTree(pos) {
   const dict = toDict(pos, toKey);
-  const neighbors = (p) =>
+  const horNeighbors = (p) =>
     [
       { x: p.x - 1, y: p.y },
       { x: p.x + 1, y: p.y },
@@ -45,7 +45,7 @@ function isChristmasTree(pos) {
   const done = {};
   for (const p of pos) {
     if (done[toKey(p)]) continue;
-    const cs = floodFill(p, neighbors, toKey);
+    const cs = floodFill(p, horNeighbors, toKey);
     for (const c of cs) {
       done[toKey(c)] = true;
     }

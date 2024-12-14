@@ -5,7 +5,7 @@ const { min, max } = Math;
 function calc(rows, addBottom) {
   let minx = min(...rows.map((r) => min(...r.map((d) => d[0]))));
   let maxx = max(...rows.map((r) => max(...r.map((d) => d[0]))));
-  let miny = 0;
+  let miny = 0; // eslint-disable-line prefer-const
   let maxy = max(...rows.map((r) => max(...r.map((d) => d[1]))));
   if (addBottom) {
     minx = 330;
@@ -23,7 +23,7 @@ function calc(rows, addBottom) {
   const ny = maxy - miny + 1;
   const mat = newMatrix(ny, nx, () => ".");
   for (let i = 0; i < rows.length; i++) {
-    let r = rows[i];
+    const r = rows[i];
     let [x0, y0] = r[0];
     for (let j = 1; j < r.length; j++) {
       const [x1, y1] = r[j];

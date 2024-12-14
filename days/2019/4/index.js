@@ -1,7 +1,7 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+import { strict as assert } from "node:assert";
 
 function checkNumber(n, part) {
-  let r = n.toString(); // eslint-disable-line
+  const r = n.toString();
   const groups = [];
   for (let x = 0; x < r.length - 1; x++) {
     if (r[x] > r[x + 1]) {

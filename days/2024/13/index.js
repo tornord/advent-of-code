@@ -2,7 +2,7 @@ import { gcd, splitArray, sum } from "../../../common";
 
 const { abs, floor } = Math;
 
-// eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
 function loopSolve(ax, ay, bx, by, sx, sy) {
   for (let na = 0; na < 100; na++) {
     for (let nb = 0; nb < 100; nb++) {
@@ -30,6 +30,7 @@ function solve(ax, ay, bx, by, sx, sy) {
 
 // scale down large numbers by indentifying the repitition and subtract a multiple of it
 // (not needed for this problem)
+// eslint-disable-next-line no-unused-vars
 function calc2(input, D) {
   const ny = input.length;
   const res = [];

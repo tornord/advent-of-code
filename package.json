@@ -13,6 +13,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "_moduleAliases": {
+    "@common": "./common"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
@@ -36,6 +39,7 @@
     "graphviz": "^0.0.9",
     "legendary-mazes": "^1.2.0",
     "md5": "^2.3.0",
+    "module-alias": "^2.2.3",
     "prettier": "^3.4.1",
     "yalps": "^0.5.6"
   }

@@ -38,7 +38,6 @@ export function divisors(n) {
 
 export function gcd(n, d) {
   if (d === 0) return 0;
-  // eslint-disable-next-line
   while (true) {
     const r = n % d;
     if (r === 0) return d;
@@ -58,7 +57,6 @@ export function modularMultiplicativeInverse(a, m) {
   let [n, d] = [a, m];
   // const ds = [];
   const ks = [];
-  // eslint-disable-next-line
   while (true) {
     // ds.push(d);
     const r = n % d;
@@ -92,7 +90,6 @@ export function linearDiophantineEquation(a, b, m) {
   let [n, d] = [a, b];
   const ds = [a];
   // const ks = [];
-  // eslint-disable-next-line
   while (true) {
     ds.push(d);
     const r = n % d;

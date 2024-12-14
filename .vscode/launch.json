@@ -82,6 +82,7 @@
       "name": "test current file",
       "skipFiles": ["<node_internals>/**"],
       "args": ["./node_modules/.bin/jest", "${file}"],
+      "env": { "TEST_DIR": "${fileDirname}" },
       "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },

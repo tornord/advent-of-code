@@ -1,4 +1,4 @@
-import { sum } from "../../../common"; // eslint-disable-line
+import { sum } from "../../../common";
 
 function calc1(input) {
   return sum(input);

@@ -1,8 +1,17 @@
 import eslint from "@eslint/js";
+import globals from "globals";
 
 export default [
   {
-    ignores: ["dist/**/*", "lib/**/*", "storybook-static/**/*", "public/**/*", "days/new"],
+    ignores: [
+      "dist/**/*",
+      "lib/**/*",
+      "storybook-static/**/*",
+      "public/**/*",
+      "days/new",
+      "days/template/*",
+      "days/2019/13/romellem/*",
+    ],
   },
   eslint.configs.recommended,
   {
@@ -25,6 +34,7 @@ export default [
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
+      globals: { ...globals.node },
     },
     settings: {},
     rules: {
@@ -84,6 +94,7 @@ export default [
       "no-trailing-spaces": 1,
       "no-underscore-dangle": 0,
       "no-unused-expressions": 2,
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "no-use-before-define": [2, "nofunc"],
       "no-var": 2,
       "no-with": 2,
@@ -103,7 +114,7 @@ export default [
     },
   },
   {
-    files: ["test.js", "*.test.js"],
+    files: ["test.js", "**/*.test.js"],
     languageOptions: {
       globals: {
         assert: false,
@@ -123,6 +134,16 @@ export default [
         expect: false,
         describe: false,
         test: false,
+      },
+    },
+    rules: {},
+  },
+  {
+    files: ["days/**/parse.test.js"],
+    languageOptions: {
+      globals: {
+        parsed: false,
+        inputRows: false,
       },
     },
     rules: {},

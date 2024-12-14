@@ -1,4 +1,4 @@
-import { sum, countBy } from "../../../common";
+import { countBy, sum } from "../../../common";
 
 function calc1(rows) {
   const nIns = rows.map((r) => r.length);

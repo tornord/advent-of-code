@@ -1,4 +1,4 @@
-const graph = {
+const GRAPH = {
   "1,0": { node: { v: ".", x: 1, y: 0, h: "1,0" }, h: "1,0", ns: { "15,15": 141 } },
   "37,7": { node: { v: ".", x: 37, y: 7, h: "37,7" }, h: "37,7", ns: { "15,15": 154, "31,35": 198, "61,9": 250 } },
   "61,9": { node: { v: ".", x: 61, y: 9, h: "61,9" }, h: "61,9", ns: { "65,41": 144, "81,19": 214, "37,7": 250 } },
@@ -164,4 +164,4 @@ function plotGraph(graph) {
   console.log(s); // eslint-disable-line no-console
 }
 
-plotGraph(graph);
+plotGraph(GRAPH);

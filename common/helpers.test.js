@@ -6,6 +6,8 @@ import {
   findMaxIndex,
   findMin,
   findMinIndex,
+  findRepition,
+  findRepitionMany,
   groupBy,
   indexOf,
   intersectionSet,
@@ -14,6 +16,7 @@ import {
   matchNumbers,
   md5,
   minSearch,
+  negMod,
   newArray,
   newMatrix,
   nodeFromHash,
@@ -471,5 +474,45 @@ describe("helpers", () => {
   test("nodeFromHash", () => {
     expect(nodeFromHash("1,2")).toEqual({ x: 1, y: 2 });
     expect(nodeFromHash("3,4,5")).toEqual({ x: 3, y: 4, z: 5 });
+  });
+
+  test("negMod", () => {
+    const ns = newArray(20, (i) => i - 10);
+    const ms = ns.map((n) => negMod(n, 7));
+    expect(ns.map((d) => d % 7)).toEqual([-3, -2, -1, -0, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2]);
+    expect(ms).toEqual([4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2]);
+  });
+
+  describe("findRepition", () => {
+    test("1", () => {
+      const initState = "0";
+      const nextFn = (s) => String((Number(s) + 1) % 17);
+      const toHash = (s) => s;
+      const res = findRepition(initState, nextFn, toHash);
+      expect(res).toEqual({ index: 0, modulo: 17 });
+    });
+
+    const repFn = (m) => (i) => (i < 0 ? i + 1 : (i + 1) % m);
+
+    test("2", () => {
+      for (const i0 of [12, 13, 14]) {
+        const initState = -i0;
+        const nextFn = repFn(17);
+        const toHash = (s) => String(s);
+        const res = findRepition(initState, nextFn, toHash);
+        expect(res).toEqual({ index: i0, modulo: 17 });
+      }
+    });
+
+    test("many 1", () => {
+      const mod = 19;
+      const rFn = repFn(mod);
+      const i0s = [12, 13, 14];
+      const initState = i0s.map((i) => -i);
+      const nextFn = (s) => s.map(rFn);
+      const toHash = (s, i) => String(s[i]);
+      const res = findRepitionMany(initState, nextFn, toHash, i0s.length);
+      expect(res).toEqual(i0s.map((i) => ({ index: i, modulo: mod })));
+    });
   });
 });

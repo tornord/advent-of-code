@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from "fs";
 
 function distance(valves, valve, id) {
   const queue = [{ id: valve.id, steps: 0 }];
@@ -44,7 +44,7 @@ function best(valves, current, open, pressure, time, elephant) {
         elephant && best(valves, "AA", nextOpen, nextPressure, 26, !elephant),
       ];
     });
-  const m = Math.max(pressure, ...results)
+  const m = Math.max(pressure, ...results);
   return m;
 }
 
@@ -58,6 +58,7 @@ export function part2(input) {
   return best(valves, "AA", new Set(), 0, 26, true);
 }
 
-console.log(part1(fs.readFileSync("./days/2022/16/test1.txt","utf-8")));
+// eslint-disable-next-line no-console
+console.log(part1(fs.readFileSync("./days/2022/16/test1.txt", "utf-8")));
 // console.log(part2(fs.readFileSync("./days/2022/16/skip.example.txt","utf-8")));
 // console.log(part2(fs.readFileSync("./days/2022/16/input.txt","utf-8")));

@@ -347,6 +347,64 @@ export const nodeFromHash = (h) =>
     (d) => d
   );
 
-export const filterIndices = (xs, filterFun) => xs.map((d, i) => (filterFun(d, i) ? i : -1)).filter((d) => d !== -1);
+/**
+ * Returns the indices of elements that pass the filterFun
+ * @param {T[]} xs
+ * @param {(x: T) => boolean} filterFn
+ * @returns
+ */
+export const filterIndices = (xs, filterFn) => xs.map((d, i) => (filterFn(d, i) ? i : -1)).filter((d) => d !== -1);
 
 export const negMod = (a, m) => (a >= 0 ? a % m : m - (-a % m)) % m;
+
+/**
+ * Loops the nextFn, calc the hash of each state and each observation, stops when a repeated hash is found
+ * @param {State} initState
+ * @param {(s: State) => State} nextFn
+ * @param {(s: State, obsIndex: number) => string} toHash
+ * @param {number} nObs number of observations
+ * @param {number} maxIterations
+ * @returns ({ index: number, modulo: number } | null)[]
+ */
+export function findRepitionMany(
+  initState,
+  nextFn,
+  toHash = (s, _obsIndex) => s,
+  nObs = 1,
+  maxIterations = 10_000_000
+) {
+  let s = initState;
+  const seens = newArray(nObs, (i) => ({ [toHash(s, i)]: 0 }));
+  const res = seens.map(() => null);
+  for (let i = 1; i < maxIterations; i++) {
+    s = nextFn(s);
+    for (let j = 0; j < nObs; j++) {
+      const h = toHash(s, j);
+      const v = seens[j][h];
+      if (v !== undefined) {
+        if (!res[j]) {
+          res[j] = { index: v, modulo: i - v };
+        }
+      } else {
+        seens[j][h] = i;
+      }
+    }
+    if (res.every(Boolean)) {
+      return res;
+    }
+  }
+  return res;
+}
+
+/**
+ * Loops the nextFn, calc the hash of each state, stops when a repeated hash is found
+ * @param {State} initState
+ * @param {(s: State) => State} nextFn
+ * @param {(s: State) => string} toHash
+ * @param {number} maxIterations
+ * @returns { index: number, modulo: number } | null
+ */
+export function findRepition(initState, nextFn, toHash = (s) => s, maxIterations = 10_000_000) {
+  const res = findRepitionMany(initState, nextFn, toHash, 1, maxIterations);
+  return res[0];
+}

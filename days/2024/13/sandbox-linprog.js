@@ -19,7 +19,7 @@ function linprog(ax, ay, bx, by, sx, sy, d = 0) {
   return solution;
 }
 
-console.log(linprog(94, 34, 22, 67, 8400, 5400)); // eslint-disable-line no-console, no-undef
+console.log(linprog(94, 34, 22, 67, 8400, 5400)); // eslint-disable-line no-console
 
 // {
 //   status: 'optimal',

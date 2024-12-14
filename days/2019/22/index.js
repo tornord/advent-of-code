@@ -1,14 +1,11 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+import { strict as assert } from "node:assert";
 
-import { sum, newArray, modularMultiplicativeInverse, gcd, primeFactors, lcm, toBinary } from "../../../common"; // eslint-disable-line
-import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
-import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { matchNumbers, parseTable, splitArray } from "../../../common"; // eslint-disable-line
+import { modularMultiplicativeInverse, negMod, newArray, primeFactors, toBinary } from "../../../common";
 
-const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
-const { isArray } = Array; // eslint-disable-line
-const negMod = (a, m) => (a >= 0 ? a % m : m - (-a % m)) % m;
-assert.deepEqual([-13, -3, 3, 13].map((d) => negMod(d, 10)), [7, 7, 3, 3]); // prettier-ignore
+assert.deepEqual(
+  [-13, -3, 3, 13].map((d) => negMod(d, 10)),
+  [7, 7, 3, 3]
+);
 
 function diffs(vs, mod) {
   const rs = [];

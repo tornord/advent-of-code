@@ -21,7 +21,6 @@ function plotBoard(dict) {
   return board;
 }
 
-// eslint-disable-next-line
 function calc1withFloodFill(input) {
   let p = { x: 0, y: 0 };
   const dict = { [toHash(p)]: p };

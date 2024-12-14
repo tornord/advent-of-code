@@ -5,17 +5,17 @@ function evaluateNode(node, globalState) {
   if (node.openValves.size > 0) {
     globalState.evalCount++;
     for (const m of node.openValves.keys()) {
-      let availableWorkers = node.workers.slice();
+      const availableWorkers = node.workers.slice();
       availableWorkers.sort((d1, d2) => d1.minute - d2.minute);
-      let w = availableWorkers[0];
-      let c = globalState.cave[w.valve].costs[m];
+      const w = availableWorkers[0];
+      const c = globalState.cave[w.valve].costs[m];
       const minLeft = globalState.totalMins - w.minute - c - 1;
       if (minLeft <= 0) continue;
       const { flow } = globalState.cave[m];
       const pressure = flow * minLeft;
       const ovs = new Set(node.openValves);
       ovs.delete(m);
-      let newW = { index: w.index, minute: w.minute + c + 1, valve: m };
+      const newW = { index: w.index, minute: w.minute + c + 1, valve: m };
       const workers = node.workers.slice().map((d, i) => (w.index === i ? newW : { ...d }));
       const path = [...node.path, m];
       childNodes.push({ path, openValves: ovs, workers, pressure: node.pressure + pressure });
@@ -32,9 +32,9 @@ function evaluateNode(node, globalState) {
 function calc(rows, totalMins, nWorkers) {
   const cave = {};
   for (const r of rows) {
-    let name = r[0];
-    let flow = Number(r[1]);
-    let childs = r.slice(2).map((d) => d.replace(",", ""));
+    const name = r[0];
+    const flow = Number(r[1]);
+    const childs = r.slice(2).map((d) => d.replace(",", ""));
     cave[name] = { name, flow, childs };
   }
 
@@ -44,10 +44,10 @@ function calc(rows, totalMins, nWorkers) {
 
   const globalState = { cave, totalMins, bestPath: null, bestPressure: null, evalCount: 0 };
 
-  let openValves = new Set(Object.values(cave).filter((d) => d.flow > 0).map((d) => d.name)); // prettier-ignore
-  let workers = newArray(nWorkers, (i) => ({ index: i, minute: 0, valve: "AA" }));
-  let root = { path: [], openValves, workers, pressure: 0 };
-  let maxPressure = evaluateNode(root, globalState);
+  const openValves = new Set(Object.values(cave).filter((d) => d.flow > 0).map((d) => d.name)); // prettier-ignore
+  const workers = newArray(nWorkers, (i) => ({ index: i, minute: 0, valve: "AA" }));
+  const root = { path: [], openValves, workers, pressure: 0 };
+  const maxPressure = evaluateNode(root, globalState);
   // console.log(globalState.bestPath, globalState.evalCount);
   return maxPressure;
 }
