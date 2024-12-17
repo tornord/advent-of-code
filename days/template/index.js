@@ -1,13 +1,14 @@
-import { strict as assert } from "node:assert"; // eslint-disable-line
+/* eslint no-unused-vars: 1 */
 
-import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common"; // eslint-disable-line
-import { intersectionSet, reduceSet, unionSet } from "../../../common"; // eslint-disable-line
-import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common"; // eslint-disable-line
-import { matchNumbers, parseTable, splitArray } from "../../../common"; // eslint-disable-line
-import { unitCircle } from "@common";
+import { strict as assert } from "node:assert";
 
-const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math; // eslint-disable-line
-const { isArray } = Array; // eslint-disable-line
+import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common";
+import { intersectionSet, reduceSet, unionSet } from "../../../common";
+import { toDict, groupBy, countBy, uniquePermutations, indexOf } from "../../../common";
+import { matchNumbers, parseTable, splitArray, unitCircle } from "../../../common";
+
+const { abs, ceil, floor, max, min, random, round, sign, sqrt } = Math;
+const { isArray } = Array;
 
 // const DIRS = unitCircle(4); // right, down, left, up
 // const DIRS = unitCircle(8); // right, right-down, down, left-down, left, left-up, up, right-up
@@ -17,7 +18,7 @@ function calc1(input) {
   const ny = input.length;
   const nx = input?.[0]?.length ?? 0;
   for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
+    let r = input[y];
     for (let x = 0; x < nx; x++) {
       //
     }
@@ -29,7 +30,7 @@ function calc2(input) {
   const ny = input.length;
   const nx = input?.[0]?.length ?? 0;
   for (let y = 0; y < ny; y++) {
-    let r = input[y]; // eslint-disable-line
+    let r = input[y];
     for (let x = 0; x < nx; x++) {
       //
     }
@@ -44,8 +45,8 @@ export default function (inputRows) {
   //   (d) => d.c,
   //   (d) => d
   // );
+  let inputGroups = splitArray(inputRows, (r) => r === "");
   let input1 = parseTable(inputRows);
-  let input2 = splitArray(inputRows, (r) => r === "");
   let input3 = inputRows.map(matchNumbers);
   let input4 = inputRows.map((r) => r.split(/, ?/g));
   let input5 = inputRows.map((r) => r.split(""));

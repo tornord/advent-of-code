@@ -1,6 +1,7 @@
 import {
   divisors,
   gcd,
+  gcdMany,
   lcm,
   linearDiophantineEquation,
   modularMultiplicativeInverse,
@@ -29,6 +30,10 @@ describe("primeNumbers", () => {
     expect(gcd(73 * 15, 59 * 15)).toEqual(15);
     expect(gcd(73, 73)).toEqual(73);
     expect(gcd(1071, 462)).toEqual(21);
+  });
+
+  test("gcdMany", () => {
+    expect(gcdMany([45, 10, 75])).toEqual(5);
   });
 
   test("lcm, Least Common Multiple", () => {

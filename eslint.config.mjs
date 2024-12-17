@@ -15,22 +15,6 @@ export default [
   },
   eslint.configs.recommended,
   {
-    // root: true,
-    // env: {
-    //   node: true,
-    //   es2020: true,
-    // },
-    // extends: ["eslint:recommended"],
-    // parserOptions: {
-    //   ecmaVersion: "latest",
-    //   sourceType: "module",
-    //   ecmaFeatures: {
-    //     jsx: true,
-    //   },
-    // },
-    // globals: {
-    //   process: false,
-    // },
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

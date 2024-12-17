@@ -1,18 +1,6 @@
-import eslint from "@eslint/js";
-
 export default [
   {
     root: true,
-    // env: {
-    //   browser: true,
-    //   es2020: true,
-    //   node: true,
-    // },
-    // extends: ["eslint:recommended"],
-    // parserOptions: {
-    //   ecmaVersion: "latest",
-    //   sourceType: "module",
-    // },
     languageOptions: {
       sourceType: "module",
     },

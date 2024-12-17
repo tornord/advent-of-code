@@ -100,7 +100,7 @@ export const reduceSet = (startSet, ...subtractorSets) => {
 };
 
 /**
- * Matrix transpose, also called zip in python.
+ * Matrix transpose, like zip in python, but with one array of arrays argument
  * @param {any[][]} mat matrix of dimension {r x c}
  * @returns {any[][]} matrix of dimension {c x r}
  */
@@ -113,7 +113,12 @@ export const transpose = (mat) => {
   return res;
 };
 
-export const zip = (mat) => transpose(mat);
+/**
+ * like zip in python, it packs the arguments into a array of arrays and transpose it.
+ * @param  {...any} mat
+ * @returns
+ */
+export const zip = (...mat) => transpose(mat);
 
 /**
  * Rotate items within an array, from start to end (end not included).

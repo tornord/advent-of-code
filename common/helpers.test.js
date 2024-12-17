@@ -161,7 +161,7 @@ describe("helpers", () => {
       [4, 5, 6],
       [7, 8, 9],
     ];
-    const t2 = zip(t1);
+    const t2 = zip(...t1);
     expect(t2).toEqual([
       [1, 4, 7],
       [2, 5, 8],

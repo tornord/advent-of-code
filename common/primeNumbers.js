@@ -37,13 +37,18 @@ export function divisors(n) {
 }
 
 export function gcd(n, d) {
-  if (d === 0) return 0;
+  if (Number.isNaN(n) || Number.isNaN(d) || n === 0 || d === 0) return 0;
+  if (n === 1 || d === 1) return 1;
   while (true) {
     const r = n % d;
     if (r === 0) return d;
     n = d;
     d = r;
   }
+}
+
+export function gcdMany(ns) {
+  return ns.reduce((a, b) => (a === 1 || b === 1 ? 1 : gcd(a, b)));
 }
 
 // modular multiplicative inverse
@@ -128,7 +133,7 @@ export function lcm(...ns) {
 
 /**
  * System of linear congruences (and Chinese Remainder Theorem)
- * Solves the equations
+ * Solves t in the equations
  * t mod m0 = r0
  * t mod m1 = r1
  * @param {number} r0
