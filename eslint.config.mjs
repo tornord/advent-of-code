@@ -77,6 +77,7 @@ export default [
       "no-spaced-func": 2,
       "no-trailing-spaces": 1,
       "no-underscore-dangle": 0,
+      "no-undef": 2,
       "no-unused-expressions": 2,
       "no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "no-use-before-define": [2, "nofunc"],

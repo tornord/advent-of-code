@@ -9,8 +9,8 @@
       "request": "launch",
       "name": "run current file",
       "skipFiles": ["<node_internals>/**"],
-      "args": ["--loader=./scripts/loader.js", "${file}"],
-      "env": { },
+      "args": ["--import=tsx/esm", "${file}"],
+      "env": {},
       "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"
     },
@@ -58,10 +58,7 @@
       "request": "launch",
       "name": "aoc test current folder",
       "skipFiles": ["<node_internals>/**"],
-      "args": [
-        "./node_modules/.bin/jest",
-        "${workspaceFolder}/advent-of-code.test.js"
-      ],
+      "args": ["./node_modules/.bin/jest", "${workspaceFolder}/advent-of-code.test.js"],
       "env": { "TEST_DIR": "${fileDirname}" },
       "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v22.11.0/bin/node",
       "console": "integratedTerminal"

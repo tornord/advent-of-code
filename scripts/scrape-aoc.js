@@ -59,13 +59,14 @@ export async function fetchDescription(year, day) {
 
 async function main() {
   const res = [];
-  for (let y = 2023; y <= 2023; y++) {
-    for (let d = 1; d <= 25; d++) {
+  const year = 2024;
+  for (let y = year; y <= year; y++) {
+    for (let d = 1; d <= 17; d++) {
       const r = await fetchDescription(String(y), String(d));
       res.push(r);
     }
   }
-  writeFileSync("./aoc2023.json", JSON.stringify(res), "utf-8");
+  writeFileSync(`./aoc${year}.json`, JSON.stringify(res), "utf-8");
 }
 
 main();

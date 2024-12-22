@@ -13,7 +13,7 @@ function scanFolder(dir) {
   return { name, files };
 }
 
-function readInput(filename) {
+export function readInput(filename) {
   let input = fs.readFileSync(filename, "utf-8").split("\n");
   let expected = null;
   if (input[0].startsWith("//")) {

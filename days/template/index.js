@@ -1,5 +1,3 @@
-/* eslint no-unused-vars: 1 */
-
 import { strict as assert } from "node:assert";
 
 import { sum, prod, range, newArray, newMatrix, transpose, isNumeric } from "../../../common";

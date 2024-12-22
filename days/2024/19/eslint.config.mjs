@@ -67,14 +67,7 @@ export default [
       "no-underscore-dangle": 0,
       "no-unreachable": 1,
       "no-unused-expressions": 2,
-      "no-unused-vars": [
-        "warn",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
+      "no-unused-vars": 1,
       "no-use-before-define": [2, "nofunc"],
       "no-var": 2,
       "no-with": 2,
