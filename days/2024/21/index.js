@@ -79,15 +79,8 @@ assert.deepEqual(propagate({ a: 1, b: 2, c: 3 }, { b: { c: 4 } }), { c: 8 });
 assert.deepEqual(propagate({ a: 1, b: 2, c: 3 }, { b: { c: 3 }, c: { a: 4 } }), { a: 12, c: 6 });
 
 function calcAllPairs(kp) {
-  const res = [];
-  for (const k1 of Object.keys(kp)) {
-    if (k1 === " ") continue;
-    for (const k2 of Object.keys(kp)) {
-      if (k2 === " ") continue;
-      res.push([k1, k2].join(""));
-    }
-  }
-  return res;
+  const ks = Object.keys(kp).filter((k) => k !== " ");
+  return ks.flatMap((k1) => ks.map((k2) => [k1, k2].join("")));
 }
 
 function calcMovePatterns(kp, seed, pairs) {
