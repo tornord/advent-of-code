@@ -6,14 +6,14 @@ const keyHeights = (k) => {
 };
 
 function calc(input) {
-  let hs = input.map((k) => keyHeights(k));
+  const hs = input.map((k) => keyHeights(k));
   let n = 0;
   for (let y = 0; y < hs.length - 1; y++) {
-    let h1 = hs[y];
+    const h1 = hs[y];
     for (let x = y + 1; x < hs.length; x++) {
-      let h2 = hs[x];
+      const h2 = hs[x];
       if (h1.top === h2.top) continue;
-      let s = h1.ns.map((h, i) => h + h2.ns[i]);
+      const s = h1.ns.map((h, i) => h + h2.ns[i]);
       if (s.every((h) => h < 6)) {
         n++;
       }
@@ -23,7 +23,7 @@ function calc(input) {
 }
 
 export default function (inputRows) {
-  let inputGroups = splitArray(inputRows, (r) => r === "");
-  let input = inputGroups.map((g) => g.map((r) => r.split("")));
+  const inputGroups = splitArray(inputRows, (r) => r === "");
+  const input = inputGroups.map((g) => g.map((r) => r.split("")));
   return [calc(input)];
 }
