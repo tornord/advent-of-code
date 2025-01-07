@@ -1,5 +1,8 @@
 import { sum } from "../../../common";
 
+// ai prompt
+// for each row in inputRows, filter chars 0 to 9 and take first and last, same char if only one is found, concat to a two digit number, convert to number, name result array nums. Sum nums and call it 'result1'
+
 function findDigit(r, di = 1, part = 1) {
   const cs = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
   let i = di === 1 ? 0 : r.length - 1;
